@@ -75,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
         signup = (TextView)findViewById(R.id.signUpTextView);
         editTextUserName = (EditText) findViewById(R.id.email);
         editTextPassword = (EditText) findViewById(R.id.password);
+        editTextUserName.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/NotoSansCJKtc-Regular.otf"));
+        editTextPassword.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/NotoSansCJKtc-Regular.otf"));
         login = (Button)findViewById(R.id.email_sign_in_button);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
