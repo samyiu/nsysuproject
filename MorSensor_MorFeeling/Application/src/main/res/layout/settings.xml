@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/dialog"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/max_temp"
+        android:text="Max Temperature ( ℃ ) \nDefault: 35 ( ℃ )"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/edittext"
+        android:inputType="number"
+        android:textColor="#000000"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/min_temp"
+        android:text="Min Temperature ( ℃ ) \nDefault: 0 ( ℃ )"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/edittext2"
+        android:inputType="number"
+        android:textColor="#000000"
+        />
+
+</LinearLayout>

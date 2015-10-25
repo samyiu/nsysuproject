@@ -1,0 +1,548 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/BackgroundColor"
+    tools:context=".MainActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_awesome_toolbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:minHeight="?attr/actionBarSize"
+        android:background="@color/BackgroundColor" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            />
+        <me.relex.circleindicator.CircleIndicator
+            android:id="@+id/indicator_unselected_background"
+            android:layout_width="fill_parent"
+            app:ci_width="6dp"
+            app:ci_height="6dp"
+            app:ci_animator="@anim/indicator_no_animator"
+            app:ci_drawable="@drawable/deepgrey_radius"
+            app:ci_drawable_unselected="@drawable/grey_radius"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true" />
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.1">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.1"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="舒適度指數"
+                android:textSize="24sp"
+                android:layout_marginStart="20dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:id="@+id/comfortindex" />
+            <ProgressBar
+                android:id="@+id/ComfortProgressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:progressDrawable="@drawable/progressbar_comfort"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:max="100"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:indeterminate="false" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="20sp"
+                    android:layout_marginStart="20dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:id="@+id/comfortNumber"
+                    />
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/triangle"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="5dp"
+                    android:clickable="true"
+                    android:id="@+id/clickcomfort"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="15dp"
+                android:id="@+id/content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/comfort_eq">
+
+                </TextView>
+                <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="16dp"
+                    android:stretchColumns="1"
+                    android:shrinkColumns="0"
+                    >
+
+                    <TableRow >
+                        <TextView
+                            android:text="86-88 : 4級"
+                            android:textStyle="bold"
+                            android:layout_width="match_parent"
+                            android:padding="3dip"
+                            />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:layout_column="0"
+                            android:text="@string/l4"
+                            android:padding="3dip"
+                            />
+
+                    </TableRow>
+
+                    <TableRow android:paddingTop="5dp">
+                        <TextView
+                            android:text="80-85 : 3級"
+                            android:textStyle="bold"
+                            android:padding="3dip"
+                            />
+
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:text="@string/l3"
+                            android:padding="3dip"
+                            />
+
+                    </TableRow>
+                    <TableRow android:paddingTop="5dp">
+                        <TextView
+                            android:text="76-79 : 2級"
+                            android:textStyle="bold"
+                            android:padding="3dip"
+                            />
+
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+                            android:layout_column="0"
+                            android:text="@string/l2"
+                            android:padding="3dip"
+                            />
+
+                    </TableRow>
+                    <TableRow android:paddingTop="5dp">
+                        <TextView
+                            android:text="71-75 : 1級"
+                            android:textStyle="bold"
+                            android:padding="3dip"
+                            />
+
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+                            android:layout_column="0"
+                            android:text="@string/l1"
+                            android:padding="3dip"
+                            />
+
+                    </TableRow>
+                    <TableRow android:paddingTop="5dp">
+                        <TextView
+                            android:text="59-70 : 0級"
+                            android:textStyle="bold"
+                            android:padding="3dip"
+                            />
+
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+                            android:layout_column="0"
+                            android:text="@string/l0"
+                            android:padding="3dip"
+                            />
+
+                    </TableRow>
+                    <TableRow android:paddingTop="5dp">
+                        <TextView
+                            android:text="51-58 : -1級"
+                            android:textStyle="bold"
+                            android:padding="3dip"
+                            />
+
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+                            android:layout_column="0"
+                            android:text="@string/l_1"
+                            android:padding="3dip"
+                            />
+
+                    </TableRow>
+                    <TableRow android:paddingTop="5dp">
+                        <TextView
+                            android:text="39-50 : -2級"
+                            android:textStyle="bold"
+                            android:padding="3dip"
+                            />
+
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+                            android:layout_column="0"
+                            android:text="@string/l_2"
+                            android:padding="3dip"
+                            />
+
+                    </TableRow>
+                    <TableRow android:paddingTop="5dp">
+                        <TextView
+                            android:text="26-38 : -3級"
+                            android:textStyle="bold"
+                            android:padding="3dip"
+                            />
+
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+                            android:layout_column="0"
+                            android:text="@string/l_3"
+                            android:padding="3dip"
+                            />
+
+                    </TableRow>
+                    <TableRow android:paddingTop="5dp">
+                        <TextView
+                            android:text="＜ 25 : -4級"
+                            android:textStyle="bold"
+                            android:padding="3dip"
+                            />
+
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+                            android:text="@string/l_4"
+                            android:layout_column="0"
+                            android:padding="3dip"
+
+                            />
+
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+                            android:text=" "
+                            android:padding="3dip"
+
+                            />
+
+                    </TableRow>
+
+                </TableLayout>
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="UVindex"
+                android:layout_marginStart="20dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:textSize="24sp"
+                android:id="@+id/uv" />
+            <ProgressBar
+                android:id="@+id/UVProgressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:progressDrawable="@drawable/progressbar_uv"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:max="100"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="20sp"
+                    android:layout_marginStart="20dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:id="@+id/myUVStatus"
+                    />
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/triangle"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="5dp"
+                    android:clickable="true"
+                    android:id="@+id/clickuv"/>
+
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="15dp"
+                android:id="@+id/contentUV">
+                <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:stretchColumns="1"
+                    android:shrinkColumns="0">
+                    <TableRow >
+                        <TextView
+                            android:text="0-2 : 低量級"
+                            android:textStyle="bold"
+                            android:layout_width="match_parent"
+                            android:padding="3dip"
+                            android:layout_span="3" />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:layout_column="0"
+                            android:text="@string/low_advice"
+                            android:padding="3dip"
+                            android:layout_span="3" />
+
+                    </TableRow>
+
+                    <TableRow android:paddingTop="5dp">
+                        <TextView
+                            android:text="3-5 : 中量級"
+                            android:textStyle="bold"
+                            android:padding="3dip"
+                            android:layout_span="3" />
+
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:text="@string/medium_advice"
+                            android:padding="3dip"
+                            android:layout_span="3" />
+
+                    </TableRow>
+                    <TableRow android:paddingTop="5dp">
+                        <TextView
+                            android:text="6-7 : 高量級"
+                            android:textStyle="bold"
+                            android:padding="3dip"
+                            />
+
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+                            android:text="@string/high_advice"
+                            android:padding="3dip"
+                            android:layout_span="3" />
+
+                    </TableRow>
+                    <TableRow android:paddingTop="5dp">
+                        <TextView
+                            android:text="8-10 : 過量級"
+                            android:textStyle="bold"
+                            android:padding="3dip"
+                            />
+
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+                            android:text="@string/veryhigh_advice"
+                            android:padding="3dip"
+                            android:layout_span="3" />
+
+                    </TableRow>
+                    <TableRow android:paddingTop="5dp">
+                        <TextView
+                            android:text="11以上 : 危險級"
+                            android:textStyle="bold"
+                            android:padding="3dip"
+                            />
+
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+                            android:text="@string/high_advice"
+                            android:padding="3dip"
+                            android:layout_span="3" />
+
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="中暑危險係數"
+                android:layout_marginStart="20dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:textSize="24sp"
+                android:id="@+id/textView3"
+                />
+            <ProgressBar
+                android:id="@+id/HeatstrokeProgressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:progressDrawable="@drawable/progressbar_sunstroke"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:max="100"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="20sp"
+                    android:layout_marginStart="20dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:id="@+id/HeatstrokeStatus"
+                    />
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/triangle"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="5dp"
+                    android:clickable="true"
+                    android:id="@+id/clicksunstroke"/>
+
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="15dp"
+                android:id="@+id/content_sunstroke">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text = "@string/eq"
+                    android:textSize="20sp"
+                    />
+                <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="16dp"
+                    android:stretchColumns="1"
+                    android:shrinkColumns="2">
+                    <TableRow>
+                        <TextView
+                            android:text="中暑危險係數"
+                            android:padding="3dip" />
+                        <TextView
+                            android:text="狀態"
+                            android:gravity="center"
+                            android:padding="3dip" />
+                        <TextView
+                            android:text="建議"
+                            android:gravity="center"
+                            android:padding="3dip" />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:text="＜ 30"
+                            android:padding="3dip" />
+                        <TextView
+                            android:text="安全範圍"
+                            android:gravity="center"
+                            android:padding="3dip" />
+                        <TextView
+                            android:text="僅須正常作息"
+                            android:gravity="center"
+                            android:padding="3dip" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+                            android:text="30-35"
+                            android:padding="3dip" />
+                        <TextView
+                            android:text="注意"
+                            android:gravity="center"
+                            android:padding="3dip" />
+                        <TextView
+                            android:text="需要補充水分"
+                            android:gravity="center"
+                            android:padding="3dip" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+                            android:text="35-40"
+                            android:padding="3dip" />
+                        <TextView
+                            android:text="警戒"
+                            android:gravity="center"
+                            android:padding="3dip" />
+                        <TextView
+                            android:layout_column="2"
+                            android:text="需要補充水分、避免激烈運動"
+                            android:gravity="center"
+                            android:padding="3dip" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+                            android:text="＞ 40"
+                            android:padding="3dip" />
+                        <TextView
+                            android:text="危險"
+                            android:gravity="center"
+                            android:padding="3dip" />
+                        <TextView
+                            android:layout_column="2"
+                            android:text="定時補充水分、勿在太陽底下活動"
+                            android:gravity="center"
+                            android:padding="3dip" />
+                    </TableRow>
+                </TableLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+    </ScrollView>
+
+</LinearLayout>

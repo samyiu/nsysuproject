@@ -1,0 +1,7 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="tw.edu.nsysu.morsenser_morfeeling.MainActivity">
+
+</menu>
+<!-- From: file:/C:/Users/sam07/Documents/GitHub/nsysuproject/MorSensor_MorFeeling/Application/src/main/res/menu/menu_main.xml -->

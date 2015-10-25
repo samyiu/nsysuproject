@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <string name="ble_not_supported">BLE is not supported</string>
+    <string name="label_read_data">Read Data:</string>
+    <string name="label_write_data">Write Data:</string>
+    <string name="button_write_data">Write</string>
+    <string name="label_device_address">Device address:</string>
+    <string name="label_state">State:</string>
+    <string name="no_data">No data</string>
+    <string name="connected">Connected</string>
+    <string name="disconnected">Disconnected</string>
+    <string name="title_devices">BLE Device Scan</string>
+    <string name="error_bluetooth_not_supported">Bluetooth not supported.</string>
+
+    <string name="unknown_device">Unknown device</string>
+    <string name="unknown_characteristic">Unknown characteristic</string>
+    <string name="unknown_service">Unknown service</string>
+
+    <!-- Menu items -->
+    <string name="menu_connect">Connect</string>
+    <string name="menu_disconnect">Disconnect</string>
+    <string name="menu_scan">Scan</string>
+    <string name="menu_stop">Stop</string>
+    <string name="timer_zeros">0%</string>
+    <string name="times_counter">200</string>
+    <string name="button_start">START</string>
+    <string name="button_play">PLAY</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_main">MorSensor</string>
+    <string name="title_activity_thuview">Temp Humi UV Sensor</string>
+    <string name="title_activity_color_view">Color Sensor</string>
+    <string name="title_activity_pirview">PIR Sensor</string>
+    <string name="title_activity_alcohol_view">Alcohol Sensor</string>
+    <string name="title_activity_sp_o2_view">SpO2 Sensor</string>
+    <string name="title_activity_mic_view">Mic Sensor</string>
+    <string name="title_activity_imuview_plus">IMUViewPlusActivity</string>
+    <string name="safe_status">安全範圍</string>
+    <string name="warning_status">需要注意</string>
+    <string name="careful_status">警戒範圍</string>
+    <string name="danger_status">危險等級</string>
+    <string name="safe_advice">僅需正常作息</string>
+    <string name="warning_advice">需要補充水分</string>
+    <string name="careful_advice">需要補充水分、避免激烈運動</string>
+    <string name="danger_advice">定時補充水分、勿在太陽底下活動</string>
+    <string name="low_status">低量級</string>
+    <string name="medium_status">中量級</string>
+    <string name="high_status">高量級</string>
+    <string name="veryhigh_status">過量級</string>
+    <string name="superhigh_status">危險級</string>
+    <string name="low_advice">紫外線強度較弱，建議出門前塗擦SPF在12~15之間、PA+的防曬護膚品</string>
+    <string name="medium_advice">紫外線強度較弱，建議出門前塗擦SPF在12~15之間、PA+的防曬護膚品</string>
+    <string name="high_advice">屬中等強度紫外線輻射天氣，外出時建議塗擦SPF高於15、PA+的防曬護膚品，戴帽子、太陽鏡.</string>
+    <string name="veryhigh_advice">紫外線輻射強，建議塗擦SPF20左右、PA++的防曬護膚品。避免在10點至14點暴露於日光下.</string>
+    <string name="superhigh_advice">紫外線輻射極強，建議塗擦SPF20以上、PA+++的防曬護膚品，儘量避免暴露於日光下.</string>
+    <string name="l4">感覺很熱，極不適應，需注意防暑降溫，以防中暑</string>
+    <string name="l3">感覺炎熱，很不舒適，需注意防暑降溫</string>
+    <string name="l2">感覺偏熱，不舒適，可適當降溫</string>
+    <string name="l1">感覺偏暖，較為舒適</string>
+    <string name="l0">感覺最為舒適，最可接受 </string>
+    <string name="l_1">感覺略偏涼，較為舒適 </string>
+    <string name="l_2">感覺較冷（清涼），不舒適，請注意保暖 </string>
+    <string name="l_3">感覺很冷，很不舒適，需注意保暖防寒</string>
+    <string name="l_4">感覺寒冷，極不適應，需注意保暖防寒，防止凍傷</string>
+    <string-array name="navigation_drawer_items_array">
+        <item>主頁</item>
+        <item>運動強度建議</item>
+        <item>過度運動警告</item>
+        <item>身體疲勞檢測</item>
+    </string-array>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="intense">運動後的血氧濃度應該比一般狀態下還要高或相等，若低於一般狀態下的話表示運動強度過於激烈，身體還不能適應，使得呼吸急促、暈眩、甚至嘔吐。</string>
+    <string formatted="false" name="beat">在睡眠中或剛起床測量較為恰當，若心率變化不超過平均值的5%代表身體處於正常狀態，若上升超過5%表示身體處於疲勞狀態。</string>
+    <string name="spo2_avg">平均血氧 : </string>
+    <string name="beat_avg">平均心率 : </string>
+    <string name="main">主頁</string>
+    <string name="intense_name">運動強度建議</string>
+    <string name="work">過度運動警告</string>
+    <string name= "tired">身體疲勞檢測</string>
+    <string name= "notice">資料庫中無資料，請先測量一筆作為基準值!!</string>
+    <string name= "eq">中暑危險係數測定法公式：\n危險係數 = 室外溫度（℃）＋ 相對濕度 × 0.1</string>
+    <string name= "comfort_eq">舒適度指數計算公式 : \nDI = T - ( 0.55 - 0.55f ) ( T - 58 ) ，T為華氏溫度，f為相對溼度(介於0-1)</string>
+    <string name= "goal_info">目標心率的計算是根據Karvonen Method的公式得來的，可以作為是否已達到欲達成之運動強度的依據，公式如下 : </string>
+    <string name= "goal_eq">目標心率值 = ((最大心率值 − 基礎心率值) × % 強度) + 基礎心率值</string>
+    <string name= "goal_example">範例:\n當一位20歲的使用者其基礎心率為75bpm，想要達到暖身運動的強度，根據Karvonen Method計算出的目標心率為137.5bpm，代表使用者運動時的心率需要超過137.5bpm才能達成暖身運動的效果。</string>
+    <string name= "app_name2">MorFeeling</string>
+    <string name="title_activity_spo2_test">Spo2Test</string>
+</resources>

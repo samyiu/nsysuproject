@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/goal_bacl"
+    android:paddingTop="16dp"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+
+            android:id="@+id/card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0.9"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:orientation="vertical"
+            card_view:cardCornerRadius="15dp"
+            card_view:cardUseCompatPadding="true"
+            card_view:contentPadding="10dp" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="年齡 : "
+            android:id="@+id/age"
+            android:textSize="25sp"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="5dp"
+            />
+        <EditText
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/edittext"
+            android:inputType="number"
+            />
+
+
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingTop="10dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="運動目標:"
+        android:textSize="20sp"
+        android:id="@+id/textView"
+        android:layout_gravity="center_vertical" />
+        <RadioGroup
+            android:id="@+id/rgroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="暖身"
+                android:textSize="20sp"
+                android:id="@+id/warmup"
+                android:layout_gravity="center_horizontal" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="有氧"
+                android:textSize="20sp"
+                android:id="@+id/cardio"
+                android:layout_gravity="center_horizontal" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="減酯"
+                android:textSize="20sp"
+                android:id="@+id/intense"
+                android:layout_gravity="center_horizontal" />
+        </RadioGroup>
+    </LinearLayout>
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="目標心率:"
+        android:id="@+id/textView10"
+        android:textSize="40sp"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="16dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="bpm"
+        android:id="@+id/goal"
+        android:textSize="40sp"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="16dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="測量目前心率"
+        android:id="@+id/test"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp" />
+
+
+
+</LinearLayout>
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+
+            android:id="@+id/card_view2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0.9"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:orientation="vertical"
+            card_view:cardCornerRadius="15dp"
+            card_view:cardUseCompatPadding="true"
+            card_view:contentPadding="10dp" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text = "了解目標心率"
+                        android:textStyle="bold"
+                        android:id="@+id/title"
+
+                        android:textSize="20sp"/>
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/triangle"
+                        android:layout_alignParentRight="true"
+                        android:clickable="true"
+                        android:id="@+id/click"/>
+
+                </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="16dp"
+                    android:id="@+id/content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text = "@string/goal_info"
+                        android:textSize="20sp"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text = "@string/goal_eq"
+                        android:textStyle="italic"
+                        android:paddingTop="16dp"
+                        android:textSize="18sp"
+                        />
+                    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="16dp"
+                        android:stretchColumns="1"
+                        android:shrinkColumns="2">
+                        <TableRow>
+                            <TextView
+                                android:text="最大心率=220-年齡"
+                                android:padding="3dip" />
+                        </TableRow>
+
+                        <TableRow>
+                            <TextView
+                                android:text="基礎心率為您一般狀態下所測得之心率平均值"
+                                android:padding="3dip" />
+
+                        </TableRow>
+                        <TableRow>
+                            <TextView
+                                android:text="強度50%-60%為暖身運動"
+                                android:padding="3dip" />
+
+                        </TableRow>
+                        <TableRow>
+                            <TextView
+                                android:text="強度60%-70%為燃燒脂肪"
+                                android:padding="3dip" />
+
+                        </TableRow>
+                        <TableRow>
+                            <TextView
+                                android:text="強度70%-80%為有氧運動"
+                                android:padding="3dip" />
+                        </TableRow>
+                    </TableLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text = "@string/goal_example"
+                        android:textSize="20sp"
+                        android:paddingTop="10dp"
+                        />
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+    </ScrollView>
+</LinearLayout><!-- From: file:/C:/Users/sam07/Documents/GitHub/nsysuproject/MorSensor_MorFeeling/Application/src/main/res/layout/spo2_goal.xml -->

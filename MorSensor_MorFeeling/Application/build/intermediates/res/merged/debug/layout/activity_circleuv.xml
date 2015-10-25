@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:CircleProgressView="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/BackgroundColor">
+
+    <tw.edu.nsysu.morsenser_morfeeling.CircleProgressView
+        android:id="@+id/circleView"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        CircleProgressView:barColor="#a16aff"
+        CircleProgressView:barWidth="20dp"
+        CircleProgressView:contourSize="0dp"
+        CircleProgressView:rimColor="#faf1ff"
+        CircleProgressView:rimWidth="20dp"
+        CircleProgressView:showUnit="true"
+        CircleProgressView:text=" "
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="UV"
+        android:id="@+id/textView13"
+        android:layout_below="@+id/circleView"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="5"
+        android:textColor="#a16aff"
+        android:textSize="60sp"
+        android:id="@+id/textUV"
+        android:layout_marginTop="60dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout><!-- From: file:/C:/Users/sam07/Documents/GitHub/nsysuproject/MorSensor_MorFeeling/Application/src/main/res/layout/activity_circleuv.xml -->

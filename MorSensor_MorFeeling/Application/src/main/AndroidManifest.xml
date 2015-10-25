@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="tw.edu.nsysu.morsenser_morfeeling"
+    android:versionCode="1"
+    android:versionName="2.1.0" >
+
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:icon="@drawable/thu_app_icon"
+        android:label="@string/app_name2"
+        android:theme="@style/AppTheme" >
+        <service
+            android:name="tw.edu.nsysu.bluetooth.BluetoothLeService"
+            android:enabled="true" />
+
+        <activity
+            android:name=".DeviceScanActivity"
+            android:label="@string/app_name2"
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".IMUViewActivity"
+            android:label="@string/app_name2"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".IMU"
+            android:label="LINE"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".THU"
+            android:label=" MorFeeling"
+            android:theme="@style/myNoActionbar">
+            android:screenOrientation="portrait"
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main" >
+            android:screenOrientation="portrait"
+        </activity>
+        <activity
+            android:name=".THUViewActivity"
+            android:label="@string/title_activity_thuview" >
+            android:screenOrientation="portrait"
+        </activity>
+        <activity
+            android:name=".ColorViewActivity"
+            android:label="@string/title_activity_color_view" >
+            android:screenOrientation="portrait"
+        </activity>
+        <activity
+            android:name=".PIRViewActivity"
+            android:label="@string/title_activity_pirview" >
+            android:screenOrientation="portrait"
+        </activity>
+        <activity
+            android:name=".AlcoholViewActivity"
+            android:label="@string/title_activity_alcohol_view" >
+            android:screenOrientation="portrait"
+        </activity>
+        <activity
+            android:name=".MicViewActivity"
+            android:label="@string/title_activity_mic_view" >
+            android:screenOrientation="portrait"
+        </activity>
+    </application>
+
+</manifest>
