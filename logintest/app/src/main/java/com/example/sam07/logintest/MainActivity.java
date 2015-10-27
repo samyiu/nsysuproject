@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -66,6 +67,9 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
+    public static final String LOGIN = "login";
+    public static final String USER = "user";
+    public static final String PASS = "pwd";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,16 +88,16 @@ public class MainActivity extends AppCompatActivity {
                 ConnectivityManager connMgr = (ConnectivityManager)
                         getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-                if (networkInfo != null && networkInfo.isConnected()) {
-                    username = editTextUserName.getText().toString();
-                    password = editTextPassword.getText().toString();
-
-                    login(username, password);
-
-
-
+                username = editTextUserName.getText().toString();
+                password = editTextPassword.getText().toString();
+                if(username.equals("") || password.equals("") ){
+                    Toast.makeText(MainActivity.this,"Please enter your username and password!",Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(MainActivity.this, "No internet connection!!", Toast.LENGTH_SHORT).show();
+                    if (networkInfo != null && networkInfo.isConnected()) {
+                        login(username, password);
+                    }
+                    else
+                        Toast.makeText(MainActivity.this, "No internet connection!!", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -106,10 +110,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        SharedPreferences settings = getSharedPreferences(LOGIN, 0);
+        String user = settings.getString(USER, "");
+        String pwd = settings.getString(PASS, "");
+        if(!(user.equals("") || user.equals(""))){
+            Intent intent = new Intent();
+            intent.setClass(MainActivity.this, TestTimePicker.class);
+            //intent.putExtra("username",user);
+            startActivity(intent);
+        }
+
     }
 
 
-    private void login(final String username, String password) {
+    private void login(final String username, final String password) {
 
         class LoginAsync extends AsyncTask<String, Void, String>{
 
@@ -142,6 +157,8 @@ public class MainActivity extends AppCompatActivity {
                             "http://140.117.192.74:1337/webservice/login.php", "POST", nameValuePairs);
 
                     // check your log for json response
+                    if(json == null)
+                        return "cannot connect to database";
                     Log.d("Login attempt",json.getString(TAG_MESSAGE));
 
                     // json success tag
@@ -174,6 +191,11 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
                 }
                 if(islogin){
+                    SharedPreferences settings = getSharedPreferences(LOGIN, 0);
+                    settings.edit()
+                            .putString(USER, username)
+                            .putString(PASS, password)
+                            .commit();
                     Intent intent = new Intent();
                     intent.setClass(MainActivity.this,GetData.class);
                     intent.putExtra("username",username);
@@ -211,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Calendar cal = Calendar.getInstance();
+        /*Calendar cal = Calendar.getInstance();
         // 設定於 3 分鐘後執行
         cal.add(Calendar.MINUTE, 1);
 
@@ -220,7 +242,7 @@ public class MainActivity extends AppCompatActivity {
         PendingIntent pi = PendingIntent.getBroadcast(this, 1, intent, PendingIntent.FLAG_ONE_SHOT);
 
         AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        am.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pi);
+        am.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pi);*/
     }
 
     @Override

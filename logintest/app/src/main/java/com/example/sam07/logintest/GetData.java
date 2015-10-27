@@ -51,7 +51,7 @@ public class GetData extends AppCompatActivity {
         Intent intent = this.getIntent();
         username = intent.getStringExtra("username");
         get(username);
-        insert(username);
+        //insert(username);
 
     }
     private void get(final String username) {
@@ -74,8 +74,8 @@ public class GetData extends AppCompatActivity {
 
                 List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
                 nameValuePairs.add(new BasicNameValuePair("username", uname));
-                nameValuePairs.add(new BasicNameValuePair("all", "no"));
-                nameValuePairs.add(new BasicNameValuePair("image", String.valueOf(R.drawable.walking)));
+                nameValuePairs.add(new BasicNameValuePair("all", "yes"));
+                //nameValuePairs.add(new BasicNameValuePair("image", String.valueOf(R.drawable.walking)));
 
 
 
@@ -243,9 +243,9 @@ public class GetData extends AppCompatActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             convertView = mInflater.inflate(R.layout.list_item, null);
             TextView title = (TextView) convertView.findViewById(R.id.title);
-            title.setText(mData.get(position).get("heartrate").toString());
+            title.setText("heart rate : " + mData.get(position).get("heartrate").toString() + " bpm");
             TextView message = (TextView) convertView.findViewById(R.id.message);
-            message.setText(mData.get(position).get("spo2").toString());
+            message.setText("spo2: " +mData.get(position).get("spo2").toString() + " %");
             ImageView img = (ImageView) convertView.findViewById(R.id.image);
             img.setImageResource((Integer) mData.get(position).get("image"));
             return convertView;
