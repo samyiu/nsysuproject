@@ -102,4 +102,11 @@
     <string name= "goal_example">範例:\n當一位20歲的使用者其基礎心率為75bpm，想要達到暖身運動的強度，根據Karvonen Method計算出的目標心率為137.5bpm，代表使用者運動時的心率需要超過137.5bpm才能達成暖身運動的效果。</string>
     <string name= "app_name2">MorFeeling</string>
     <string name="title_activity_spo2_test">Spo2Test</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Login</string>
+    <string name="invalid_email">This email address is invalid</string>
+    <string name="invalid_password">Password is too short</string>
+    <string name="incorrect_password">Password is incorrect</string>
+    <string name="field_required">This field is required</string>
 </resources>

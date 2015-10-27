@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="18"
-        android:targetSdkVersion="19" />
+        android:targetSdkVersion="21" />
 
     <uses-feature
         android:name="android.hardware.bluetooth_le"
@@ -18,17 +18,27 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:icon="@drawable/thu_app_icon"
         android:label="@string/app_name2"
         android:theme="@style/AppTheme" >
+        <activity android:name="tw.edu.nsysu.morsenser_morfeeling.Register" />
+        <activity android:name="tw.edu.nsysu.morsenser_morfeeling.TestTimePicker" />
+        <activity
+            android:name="tw.edu.nsysu.morsenser_morfeeling.Dialog"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Transparent" >
+        </activity>
+
         <service
             android:name="tw.edu.nsysu.bluetooth.BluetoothLeService"
             android:enabled="true" />
 
         <activity
-            android:name="tw.edu.nsysu.morsenser_morfeeling.DeviceScanActivity"
+            android:name="tw.edu.nsysu.morsenser_morfeeling.Login"
             android:label="@string/app_name2"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" >
@@ -42,6 +52,10 @@
             android:name="tw.edu.nsysu.morsenser_morfeeling.IMUViewActivity"
             android:label="@string/app_name2"
             android:screenOrientation="landscape" />
+        <activity
+            android:name="tw.edu.nsysu.morsenser_morfeeling.DeviceScanActivity"
+            android:label="@string/app_name2"
+            android:screenOrientation="portrait" />
         <activity
             android:name="tw.edu.nsysu.morsenser_morfeeling.IMU"
             android:label="LINE"
@@ -82,6 +96,14 @@
             android:label="@string/title_activity_mic_view" >
             android:screenOrientation="portrait"
         </activity>
+
+        <receiver android:name="tw.edu.nsysu.morsenser_morfeeling.AlarmReceiver" >
+            <intent-filter>
+
+                <!-- 使用Action名稱設定接收的廣播事件 -->
+                <action android:name="net.macdidi.broadcast01.action.MYBROADCAST01" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

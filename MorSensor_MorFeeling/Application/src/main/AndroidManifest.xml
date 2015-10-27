@@ -14,17 +14,24 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:icon="@drawable/thu_app_icon"
         android:label="@string/app_name2"
         android:theme="@style/AppTheme" >
+        <activity android:name=".Register"/>
+        <activity android:name=".TestTimePicker"/>
+        <activity android:name=".Dialog"
+            android:label="@string/app_name" android:theme="@style/Theme.Transparent">
+        </activity>
         <service
             android:name="tw.edu.nsysu.bluetooth.BluetoothLeService"
             android:enabled="true" />
 
         <activity
-            android:name=".DeviceScanActivity"
+            android:name=".Login"
             android:label="@string/app_name2"
             android:theme="@style/AppTheme"
             android:screenOrientation="portrait" >
@@ -38,6 +45,10 @@
             android:name=".IMUViewActivity"
             android:label="@string/app_name2"
             android:screenOrientation="landscape" />
+        <activity
+            android:name=".DeviceScanActivity"
+            android:label="@string/app_name2"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".IMU"
             android:label="LINE"
@@ -78,6 +89,7 @@
             android:label="@string/title_activity_mic_view" >
             android:screenOrientation="portrait"
         </activity>
+        <receiver android:name=".AlarmReceiver"/>
     </application>
 
 </manifest>
