@@ -64,7 +64,7 @@ public class Login extends AppCompatActivity {
         title = (TextView) findViewById(R.id.textView2);
         title.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/HaloHandletter.otf"));
         signup = (TextView)findViewById(R.id.signUpTextView);
-        editTextUserName = (EditText) findViewById(R.id.email);
+        editTextUserName = (EditText) findViewById(R.id.username);
         editTextPassword = (EditText) findViewById(R.id.password);
         editTextUserName.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/NotoSansCJKtc-Regular.otf"));
         editTextPassword.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/NotoSansCJKtc-Regular.otf"));

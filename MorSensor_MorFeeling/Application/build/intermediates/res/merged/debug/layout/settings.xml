@@ -1,42 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/dialog"
-    >
+    android:id="@+id/dialog">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/max_temp"
-        android:text="Max Temperature ( ℃ ) \nDefault: 35 ( ℃ )"
-        android:gravity="center_horizontal"
-        android:textSize="20sp"
+        android:text="基本資訊"
+        android:layout_margin="16dp"
+        android:textSize="25sp"
         />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/edittext"
-        android:inputType="number"
-        android:textColor="#000000"
-        />
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/min_temp"
-        android:text="Min Temperature ( ℃ ) \nDefault: 0 ( ℃ )"
-        android:gravity="center_horizontal"
-        android:textSize="20sp"
-        />
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="帳號"
+            android:layout_marginLeft="32dp"
+            android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:textSize="20sp"/>
 
-    <EditText
+    </LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:textColor="#009688"
+        android:text="登出"
+        android:background="@drawable/my_button"
+       />
+    <View
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/edittext2"
-        android:inputType="number"
-        android:textColor="#000000"
-        />
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_margin="5dp"></View>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/sunstroke"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="16dp"
+            android:text="中暑警示"
+            android:textSize="20sp"/>
+        <com.rey.material.widget.Switch
+            style="@style/Material.Widget.Switch"
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+
+            android:checked="false"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/uv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="16dp"
+            android:text="紫外線指數警示"
+            android:textSize="20sp"/>
+        <com.rey.material.widget.Switch
+            style="@style/Material.Widget.Switch"
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+
+            android:checked="false"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/comfort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="16dp"
+            android:text="舒適度警示"
+            android:textSize="20sp"/>
+        <com.rey.material.widget.Switch
+            style="@style/Material.Widget.Switch"
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+
+            android:checked="false"/>
+    </RelativeLayout>
+
 
 </LinearLayout><!-- From: file:/C:/Users/sam07/Documents/GitHub/nsysuproject/MorSensor_MorFeeling/Application/src/main/res/layout/settings.xml -->

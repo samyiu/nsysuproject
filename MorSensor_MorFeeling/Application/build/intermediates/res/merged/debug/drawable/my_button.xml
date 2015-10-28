@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true" >
+        <shape>
+            <solid
+                android:color="#009688" />
+            <corners
+                android:radius="166dp" />
+
+        </shape>
+    </item>
+    <item>
+        <shape>
+
+            <stroke
+                android:width="2dp"
+                android:color="#009688" />
+            <corners
+                android:radius="16dp" />
+
+        </shape>
+    </item>
+</selector><!-- From: file:/C:/Users/sam07/Documents/GitHub/nsysuproject/MorSensor_MorFeeling/Application/src/main/res/drawable/my_button.xml -->

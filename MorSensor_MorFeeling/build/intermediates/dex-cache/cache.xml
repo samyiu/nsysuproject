@@ -2,67 +2,25 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\sam07\Documents\GitHub\nsysuproject\MorSensor_MorFeeling\Application\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.1\jars\classes.jar"
+        jar="C:\Users\sam07\Documents\GitHub\nsysuproject\MorSensor_MorFeeling\Application\build\intermediates\exploded-aar\com.rengwuxian.materialedittext\library\2.1.4\jars\classes.jar"
         jumboMode="false"
         revision="21.0.1"
-        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
-        <dex dex="C:\Users\sam07\Documents\GitHub\nsysuproject\MorSensor_MorFeeling\Application\build\intermediates\pre-dexed\debug\classes-c1da81c00943e601cf62056ee3fed905631ce8e8.jar" />
+        sha1="288913b440a3c61c30aa171095453a605432277a">
+        <dex dex="C:\Users\sam07\Documents\GitHub\nsysuproject\MorSensor_MorFeeling\Application\build\intermediates\pre-dexed\debug\classes-0b2e52652e85eca1fbc4039a2ac97f04e48e3c64.jar" />
     </item>
     <item
-        jar="C:\Users\sam07\Documents\GitHub\nsysuproject\MorSensor_MorFeeling\Application\build\intermediates\exploded-aar\com.android.support\design\22.2.1\jars\classes.jar"
+        jar="C:\Users\sam07\Documents\GitHub\nsysuproject\MorSensor_MorFeeling\Application\build\intermediates\exploded-aar\com.github.rey5137\material\1.2.1\jars\classes.jar"
         jumboMode="false"
         revision="21.0.1"
-        sha1="1821601ddbec5ff125653097812823388700af74">
-        <dex dex="C:\Users\sam07\Documents\GitHub\nsysuproject\MorSensor_MorFeeling\Application\build\intermediates\pre-dexed\debug\classes-3377547aecc019cdf5e1334235a462da3f9090b2.jar" />
+        sha1="0040be6592cbfbb19a2c1e90a759278795ed2280">
+        <dex dex="C:\Users\sam07\Documents\GitHub\nsysuproject\MorSensor_MorFeeling\Application\build\intermediates\pre-dexed\debug\classes-a08b7c19a4312c238e0e148e22105cbb1598f6b2.jar" />
     </item>
     <item
-        jar="C:\Users\sam07\AppData\Local\Android\sdk1\extras\android\m2repository\com\android\support\support-annotations\23.0.0\support-annotations-23.0.0.jar"
+        jar="C:\Users\sam07\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
         jumboMode="false"
         revision="21.0.1"
-        sha1="990e7f98a7bad86a40b1f0bcfeb039023afd0839">
-        <dex dex="C:\Users\sam07\Documents\GitHub\nsysuproject\MorSensor_MorFeeling\Application\build\intermediates\pre-dexed\debug\support-annotations-23.0.0-aa9d2c6627fa528ee36356d06828e1ba0c677022.jar" />
-    </item>
-    <item
-        jar="C:\Users\sam07\Documents\GitHub\nsysuproject\MorSensor_MorFeeling\Application\build\intermediates\exploded-aar\me.relex\circleindicator\1.1.5\jars\classes.jar"
-        jumboMode="false"
-        revision="21.0.1"
-        sha1="3505b86b653bb367105403d204cc7752142d86c1">
-        <dex dex="C:\Users\sam07\Documents\GitHub\nsysuproject\MorSensor_MorFeeling\Application\build\intermediates\pre-dexed\debug\classes-26d90a236683c7800a15b505cf3ee3226c932f83.jar" />
-    </item>
-    <item
-        jar="C:\Users\sam07\Documents\GitHub\nsysuproject\MorSensor_MorFeeling\Application\libs\GraphView-4.0.1.jar"
-        jumboMode="false"
-        revision="21.0.1"
-        sha1="8bd182a66f13dedad362bfbf992be96de2be5969">
-        <dex dex="C:\Users\sam07\Documents\GitHub\nsysuproject\MorSensor_MorFeeling\Application\build\intermediates\pre-dexed\debug\GraphView-4.0.1-34aa8bee6a7ae0268e1c2edbe039325b44e22989.jar" />
-    </item>
-    <item
-        jar="C:\Users\sam07\Documents\GitHub\nsysuproject\MorSensor_MorFeeling\Application\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.0\jars\classes.jar"
-        jumboMode="false"
-        revision="21.0.1"
-        sha1="8413c27b45b7fe61dca4a98159f65e2cee215f5a">
-        <dex dex="C:\Users\sam07\Documents\GitHub\nsysuproject\MorSensor_MorFeeling\Application\build\intermediates\pre-dexed\debug\classes-0923a3abb1875edc8fa3bf4c47183f522be47fb6.jar" />
-    </item>
-    <item
-        jar="C:\Users\sam07\Documents\GitHub\nsysuproject\MorSensor_MorFeeling\Application\build\intermediates\exploded-aar\com.android.support\cardview-v7\22.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="21.0.1"
-        sha1="e1fa5e1123997a55e3ed65b44892993ff4b58cfe">
-        <dex dex="C:\Users\sam07\Documents\GitHub\nsysuproject\MorSensor_MorFeeling\Application\build\intermediates\pre-dexed\debug\classes-f5187bbebf4d097a988afb7187bb6357ad88af1d.jar" />
-    </item>
-    <item
-        jar="C:\Users\sam07\Documents\GitHub\nsysuproject\MorSensor_MorFeeling\Application\build\intermediates\exploded-aar\com.wdullaer\materialdatetimepicker\1.5.4\jars\classes.jar"
-        jumboMode="false"
-        revision="21.0.1"
-        sha1="25ed3c22824ec25eb68c650bb85d897f3ee0e8bc">
-        <dex dex="C:\Users\sam07\Documents\GitHub\nsysuproject\MorSensor_MorFeeling\Application\build\intermediates\pre-dexed\debug\classes-3109ff2bd9689e9d3ee367ed9f424fd581543582.jar" />
-    </item>
-    <item
-        jar="C:\Users\sam07\Documents\GitHub\nsysuproject\MorSensor_MorFeeling\Application\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.0\jars\libs\internal_impl-23.0.0.jar"
-        jumboMode="false"
-        revision="21.0.1"
-        sha1="8bd336eeae661e8311330284897ee07f8ebaa297">
-        <dex dex="C:\Users\sam07\Documents\GitHub\nsysuproject\MorSensor_MorFeeling\Application\build\intermediates\pre-dexed\debug\internal_impl-23.0.0-6940e481f067dff5d3b1b79773be8ad415620f99.jar" />
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="C:\Users\sam07\Documents\GitHub\nsysuproject\MorSensor_MorFeeling\Application\build\intermediates\pre-dexed\debug\library-2.4.0-54440b0e368a4b485a8560dc4d7a315287d49735.jar" />
     </item>
 
 </items>

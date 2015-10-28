@@ -1,12 +1,16 @@
 package tw.edu.nsysu.morsenser_morfeeling;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +29,9 @@ import tw.edu.nsysu.dataManage.DataTransform;
 public class THU extends AppCompatActivity {
     ViewPager pager;
     ViewPagerAdapter adapter;
+    public static boolean show_comfort = false;
+    public static boolean show_uv= false;
+    public static boolean show_sunstroke = false;
     static ProgressBar ComfortProgressBar;
     static ProgressBar UVProgressBar;
     static ProgressBar HeatstrokeProgressBar;
@@ -175,8 +182,12 @@ public class THU extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent intent = new Intent(this, Setting.class);
+            startActivity(intent);
+            finish();
             return true;
         }
+
 
         return super.onOptionsItemSelected(item);
     }

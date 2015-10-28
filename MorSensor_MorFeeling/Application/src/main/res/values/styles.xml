@@ -40,7 +40,7 @@
         <item name="android:textColorPrimary">@color/colorTextPrimary</item>
     </style>
 
-    <style name="Widget" />
+
 
     <style name="Button" parent="@android:style/Widget.Button">  
         <item name="android:gravity">center_vertical|center_horizontal</item>  
