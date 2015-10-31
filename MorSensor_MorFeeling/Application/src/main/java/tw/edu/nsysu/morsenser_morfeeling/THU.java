@@ -1,16 +1,13 @@
 package tw.edu.nsysu.morsenser_morfeeling;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,9 +29,6 @@ public class THU extends AppCompatActivity {
     public static boolean show_comfort = false;
     public static boolean show_uv= false;
     public static boolean show_sunstroke = false;
-    public static boolean comfort_warning = false;
-    public static boolean uv_warning= false;
-    public static boolean sunstroke_warning = false;
     static ProgressBar ComfortProgressBar;
     static ProgressBar UVProgressBar;
     static ProgressBar HeatstrokeProgressBar;
@@ -65,7 +59,7 @@ public class THU extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.my_awesome_toolbar);
 
         setSupportActionBar(toolbar);
-        toolbar.setLogo(R.drawable.thu_app_icon_small);
+        //toolbar.setLogo(R.drawable.thu_app_icon_small);
 
         CircleIndicator myIndicator = (CircleIndicator)findViewById(R.id.indicator_unselected_background);
         // Creating The ViewPagerAdapter and Passing Fragment Manager

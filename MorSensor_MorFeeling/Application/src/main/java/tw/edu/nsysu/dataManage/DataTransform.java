@@ -3,10 +3,9 @@ package tw.edu.nsysu.dataManage;
 import android.util.Log;
 import android.widget.Toast;
 
-import tw.edu.nsysu.morsenser_morfeeling.AlcoholViewActivity;
-import tw.edu.nsysu.morsenser_morfeeling.ColorViewActivity;
+import tw.edu.nsysu.fragment.CircleHeartbeat;
+import tw.edu.nsysu.fragment.CircleSpo2;
 import tw.edu.nsysu.morsenser_morfeeling.MainActivity;
-import tw.edu.nsysu.morsenser_morfeeling.PIRViewActivity;
 
 /**
  * Created by 1404011 on 2015/5/4.
@@ -87,7 +86,7 @@ public class DataTransform {
         data[0] = RawData[3];
         data[1] = RawData[5];
         data[2] = RawData[7];
-
+/*
         if(ColorViewActivity.Calibration){
             RedCalibration = 255f / data[0];
             GreenCalibration = 255f / data[1];
@@ -95,6 +94,7 @@ public class DataTransform {
 
             ColorViewActivity.Calibration = false;
         }
+        */
 //        Log.e(TAG,"RedCalibration:"+RedCalibration+" GreenCalibration:"+GreenCalibration+" BlueCalibration:"+BlueCalibration);
 
         data[0] *= RedCalibration;
@@ -115,7 +115,7 @@ public class DataTransform {
         if(Blue.length()==1){ Blue = "0" + Blue;}
 
 //        Log.e(TAG, "Red:" + Red + " Green:" + Green + " Blue:" + Blue);
-        ColorViewActivity.DisplayColorData();
+        //ColorViewActivity.DisplayColorData();
     }
 
     public static void TransformPIR(byte[] value) {
@@ -124,7 +124,7 @@ public class DataTransform {
         // <10cm ALC_out=3.3 ; >10cm ALC_out=0
         data[0] = (float) ((RawData[2] * 256.0 + RawData[3]) / 4096.0 * 3.3);
 
-        PIRViewActivity.DisplayPIRData();
+        //PIRViewActivity.DisplayPIRData();
     }
 
     static float a, b, a_p, ReadConter = 0;
@@ -156,7 +156,7 @@ public class DataTransform {
             data[0] = 0.1586f * a_p * a_p - 0.1199f * a_p;
         }
 
-        AlcoholViewActivity.DisplayAlcoholData();
+        //AlcoholViewActivity.DisplayAlcoholData();
     }
 
     // Byte[] to HexString
@@ -259,7 +259,8 @@ public class DataTransform {
                 Log.d(TAG, "count:"+data[6]+" SpO2Data:" + SpO2Data + " HeartRateData:"+HeartRateData + " IR:"+IR+" RED:"+RED);
             }
 
-
+            CircleSpo2.update();
+            CircleHeartbeat.update();
 
         }else{ //LED2 = RED
             data[0] = (float)LED[0] * 1.2f / (float)Math.pow(2,21); //RED

@@ -14,19 +14,24 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:icon="@drawable/thu_app_icon"
         android:label="@string/app_name2"
         android:theme="@style/AppTheme" >
-        <activity android:name=".Register" android:theme="@style/myNoActionbar"/>
-        <activity android:name=".TestTimePicker"/>
-        <activity android:name=".Setting"/>
-        <activity android:name=".Dialog"
-            android:label="@string/app_name" android:theme="@style/Theme.Transparent">
+        <activity
+            android:name=".Register"
+            android:theme="@style/myNoActionbar" />
+        <activity android:name=".TestTimePicker" />
+        <activity android:name=".Setting" />
+        <activity
+            android:name=".Dialog"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Transparent" >
         </activity>
+
         <service
             android:name="tw.edu.nsysu.bluetooth.BluetoothLeService"
             android:enabled="true" />
@@ -34,8 +39,8 @@
         <activity
             android:name=".Login"
             android:label="@string/app_name2"
-            android:theme="@style/myNoActionbar"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:theme="@style/myNoActionbar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -57,7 +62,7 @@
         <activity
             android:name=".THU"
             android:label=" MorFeeling"
-            android:theme="@style/myNoActionbar">
+            android:theme="@style/myNoActionbar" >
             android:screenOrientation="portrait"
         </activity>
         <activity
@@ -65,28 +70,18 @@
             android:label="@string/title_activity_main" >
             android:screenOrientation="portrait"
         </activity>
-        <activity
-            android:name=".THUViewActivity"
-            android:label="@string/title_activity_thuview" >
-            android:screenOrientation="portrait"
-        </activity>
-        <activity
-            android:name=".ColorViewActivity"
-            android:label="@string/title_activity_color_view" >
-            android:screenOrientation="portrait"
-        </activity>
-        <activity
-            android:name=".PIRViewActivity"
-            android:label="@string/title_activity_pirview" >
-            android:screenOrientation="portrait"
-        </activity>
-        <activity
-            android:name=".AlcoholViewActivity"
-            android:label="@string/title_activity_alcohol_view" >
-            android:screenOrientation="portrait"
-        </activity>
 
-        <receiver android:name=".AlarmReceiver"/>
+        <receiver android:name=".AlarmReceiver" />
+
+        <activity
+            android:name=".SPO2"
+            android:label="@string/title_activity_spo2"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/myNoActionbar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="tw.edu.nsysu.morsenser_morfeeling.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

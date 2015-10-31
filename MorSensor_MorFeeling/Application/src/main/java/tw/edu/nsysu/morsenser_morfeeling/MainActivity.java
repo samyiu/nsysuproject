@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
         tv_FirmwaveVersion.setText(Firmwave_Version);
 
         getSupportActionBar().setDisplayUseLogoEnabled(true);
-        getSupportActionBar().setIcon(R.drawable.icon);
+        //getSupportActionBar().setIcon(R.drawable.icon);
     }
 
     @Override
@@ -218,8 +218,8 @@ public class MainActivity extends AppCompatActivity {
                     command = MorSensorCommand.SetLEDOn((short)IN_IN_COLOR_SENSOR_LED);
                     SendCommands = NULL_COMMAND;
 
-                    intent.setClass(mMainActivity, ColorViewActivity.class);
-                    startActivity(intent);
+                    //intent.setClass(mMainActivity, ColorViewActivity.class);
+                    //startActivity(intent);
                     break;
                 case R.id.btSpO2:
                     TempID = SpO2ID;
@@ -227,16 +227,16 @@ public class MainActivity extends AppCompatActivity {
                     SendCommands = NULL_COMMAND;
 
                     //intent.setClass(mMainActivity, SpO2_application.class);
-                    //intent.setClass(mMainActivity, SpO2ViewActivity.class);
-                    //startActivity(intent);
+                    intent.setClass(mMainActivity, SPO2.class);
+                    startActivity(intent);
                     break;
                 case R.id.btAlcohol:
                     TempID = AlcoholID;
                     command = MorSensorCommand.GetSensorData(AlcoholID);
                     SendCommands = NULL_COMMAND;
 
-                    intent.setClass(mMainActivity, AlcoholViewActivity.class);
-                    startActivity(intent);
+                    //intent.setClass(mMainActivity, AlcoholViewActivity.class);
+                    //startActivity(intent);
                     break;
                 case R.id.btMic:
                     TempID = MicID;
@@ -250,8 +250,8 @@ public class MainActivity extends AppCompatActivity {
                     command = MorSensorCommand.GetSensorData(PIRID);
                     SendCommands = NULL_COMMAND;
 
-                    intent.setClass(mMainActivity, PIRViewActivity.class);
-                    startActivity(intent);
+                    //intent.setClass(mMainActivity, PIRViewActivity.class);
+                    //startActivity(intent);
                     break;
             }
             for(int i=0;i<20;i++)
