@@ -32,6 +32,9 @@ public class THU extends AppCompatActivity {
     public static boolean show_comfort = false;
     public static boolean show_uv= false;
     public static boolean show_sunstroke = false;
+    public static boolean comfort_warning = false;
+    public static boolean uv_warning= false;
+    public static boolean sunstroke_warning = false;
     static ProgressBar ComfortProgressBar;
     static ProgressBar UVProgressBar;
     static ProgressBar HeatstrokeProgressBar;
@@ -46,11 +49,13 @@ public class THU extends AppCompatActivity {
     static ImageView clickuv;
     static ImageView clicksunstroke;
     static float data[] = new float[3];
+    static THU mn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_thu);
+        mn = this;
         comfortnumber = (TextView)findViewById(R.id.comfortNumber);
         ComfortProgressBar = (ProgressBar) findViewById(R.id.ComfortProgressBar);
         UVProgressBar = (ProgressBar) findViewById(R.id.UVProgressBar);
@@ -269,11 +274,13 @@ public class THU extends AppCompatActivity {
         }
     }
     public static void HeatstrokeCalc(){
+        String message = "";
         data = DataTransform.getData();
         //危險等級
         if(data[1]+data[2]*0.1>40) {
             HeatstrokeStatus.setText(R.string.danger_status);
             HeatstrokeProgressBar.setProgress(100);
+
         }
         //警戒範圍
         else if(data[1]+data[2]*0.1 >=35) {
@@ -291,6 +298,7 @@ public class THU extends AppCompatActivity {
             HeatstrokeStatus.setText(R.string.safe_status);
             HeatstrokeProgressBar.setProgress(0);
         }
+        
 
     }
 

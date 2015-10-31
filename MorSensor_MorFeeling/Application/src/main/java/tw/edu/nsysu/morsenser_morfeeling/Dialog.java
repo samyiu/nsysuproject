@@ -11,12 +11,20 @@ import android.support.v7.app.AppCompatActivity;
  * Created by sam07 on 2015/10/27.
  */
 public class Dialog extends AppCompatActivity implements DialogInterface.OnCancelListener {
+    String message="";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        int which = getIntent().getIntExtra("dialog",0);
+        switch (which){
+            case 1:
+                message = "1";
+                break;
+            default:
+        }
         AlertDialog.Builder alertDialog= new AlertDialog.Builder(Dialog.this);
         alertDialog.setTitle("HI~")
-        .setMessage("this is a dialog box ")
+        .setMessage(message)
         .setOnCancelListener(this);
         alertDialog.show();
     }
@@ -25,6 +33,7 @@ public class Dialog extends AppCompatActivity implements DialogInterface.OnCance
     public void onCancel(DialogInterface dialog) {
         finish();
     }
+
     public static void createDialog(int dialog, Context context){
         Intent myIntent = new Intent(context, Dialog.class);
         Bundle bundle = new Bundle();
