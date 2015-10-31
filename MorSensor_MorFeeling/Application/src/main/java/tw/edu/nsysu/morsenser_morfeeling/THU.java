@@ -1,5 +1,6 @@
 package tw.edu.nsysu.morsenser_morfeeling;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.math.BigDecimal;
 
@@ -32,9 +34,10 @@ public class THU extends AppCompatActivity {
     public static boolean show_comfort = false;
     public static boolean show_uv= false;
     public static boolean show_sunstroke = false;
-    public static boolean comfort_warning = false;
-    public static boolean uv_warning= false;
-    public static boolean sunstroke_warning = false;
+    public static boolean isActive = false;
+    public static String comfort_status = "";
+    public static String uv_status= "";
+    public static int sunstroke_status = 0;
     static ProgressBar ComfortProgressBar;
     static ProgressBar UVProgressBar;
     static ProgressBar HeatstrokeProgressBar;
@@ -148,6 +151,7 @@ public class THU extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
+        isActive = true;
         // we're going to simulate real time with thread that append data to the graph
         new Thread(new Runnable() {
             @Override
@@ -189,7 +193,7 @@ public class THU extends AppCompatActivity {
         if (id == R.id.action_settings) {
             Intent intent = new Intent(this, Setting.class);
             startActivity(intent);
-            finish();
+            //finish();
             return true;
         }
 
@@ -197,6 +201,7 @@ public class THU extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     public static void ComfortCalc(){
+        Log.e("Comfort",comfort_status);
         //讀取溫度、濕度、紫外線指數資料
         data = DataTransform.getData();
         //轉換成華氏
@@ -208,16 +213,55 @@ public class THU extends AppCompatActivity {
 
         if(index >=86) {
             //status.setText(R.string.l4);
+
             ComfortProgressBar.setProgress(100);
+            if(show_comfort && !comfort_status.equals(mn.getResources().getString(R.string.l4))) {
+                android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(mn);
+                alertDialog.setTitle("小提醒")
+                        .setIcon(R.drawable.ic_warning_black_18dp)
+                        .setMessage(R.string.l4);
+                if (isActive) {
+                    alertDialog.show();
+
+                }
+                comfort_status = mn.getResources().getString(R.string.l4);
+            }
+
         }
         else if(index >=80) {
             //status.setText(R.string.l3);
             ComfortProgressBar.setProgress((int) (100/(88-25)*Math.round(index)));
+            if(show_comfort && !comfort_status.equals(mn.getResources().getString(R.string.l3))) {
+                android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(mn);
+                alertDialog.setTitle("小提醒")
+                        .setIcon(R.drawable.ic_warning_black_18dp)
+                        .setMessage(R.string.l3);
+                if (isActive) {
+                    alertDialog.show();
+
+                }
+                comfort_status = mn.getResources().getString(R.string.l3);
+            }
+
         }
-        else if(index >=76) {
+        else if(index >= 76) {
             //顯示警告
             //status.setText(R.string.l2);
             ComfortProgressBar.setProgress((int) (100 / (88 - 25) * Math.round(index)));
+            if(show_comfort &&  !comfort_status.equals(mn.getResources().getString(R.string.l2))) {
+                android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(mn);
+                alertDialog.setTitle("小提醒")
+                        .setIcon(R.drawable.ic_warning_black_18dp)
+                        .setMessage(R.string.l2);
+                Intent intent = new Intent();
+                intent.setClassName("tw.edu.nsysu.morsenser_morfeeling", "THU");
+                if (isActive) {
+                    alertDialog.show();
+
+                }
+                comfort_status = mn.getResources().getString(R.string.l2);
+            }
+
         }
         else if(index >=71) {
             //status.setText(R.string.l1);
@@ -234,38 +278,120 @@ public class THU extends AppCompatActivity {
         else if(index >=39) {
             //status.setText(R.string.l_2);
             ComfortProgressBar.setProgress((int) (100 / (88 - 25) * Math.round(index)));
+            if(show_comfort &&  !comfort_status.equals(mn.getResources().getString(R.string.l_2))) {
+                android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(mn);
+                alertDialog.setTitle("小提醒")
+                        .setIcon(R.drawable.ic_warning_black_18dp)
+                        .setMessage(R.string.l_2);
+                if (isActive) {
+                    alertDialog.show();
+
+                }
+                comfort_status = mn.getResources().getString(R.string.l_2);
+            }
+
         }
         else if(index >=26) {
             //status.setText(R.string.l_3);
             ComfortProgressBar.setProgress((int) (100 / (88 - 25) * Math.round(index)));
+            if(show_comfort &&  !comfort_status.equals(mn.getResources().getString(R.string.l_3))) {
+                android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(mn);
+                alertDialog.setTitle("小提醒")
+                        .setIcon(R.drawable.ic_warning_black_18dp)
+                        .setMessage(R.string.l_3);
+                if (isActive) {
+                    alertDialog.show();
+
+                }
+                comfort_status = mn.getResources().getString(R.string.l_3);
+            }
+
         }
         else  {
             //status.setText(R.string.l_4);
             ComfortProgressBar.setProgress(0);
+            if(show_comfort  &&  !comfort_status.equals(mn.getResources().getString(R.string.l_4))) {
+                android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(mn);
+                alertDialog.setTitle("小提醒")
+                        .setIcon(R.drawable.ic_warning_black_18dp)
+                        .setMessage(R.string.l_4);
+
+                if (isActive) {
+                    alertDialog.show();
+
+                }
+                comfort_status = mn.getResources().getString(R.string.l_4);
+            }
+
         }
 
     }
+
     public static void UVCalc(){
         data = DataTransform.getData();
         //危險級
-        if(data[0]>=11) {
+        if(data[0]>=11  ) {
             UVstatus.setText(R.string.superhigh_status);
             UVProgressBar.setProgress(100);
+            if(show_uv && !uv_status.equals(mn.getResources().getString(R.string.superhigh_status))) {
+                android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(mn);
+                alertDialog.setTitle("小提醒")
+                        .setIcon(R.drawable.ic_warning_black_18dp)
+                        .setMessage(R.string.superhigh_advice);
+                if (isActive) {
+                    alertDialog.show();
+
+                }
+                uv_status = mn.getResources().getString(R.string.superhigh_status);
+            }
         }
         //過量級
-        else if(data[0]>=8) {
+        else if(data[0]>=8 ) {
             UVstatus.setText(R.string.veryhigh_status);
             UVProgressBar.setProgress(Math.round(100.0f / 11.0f * data[0]));
+            if(show_uv && !uv_status.equals(mn.getResources().getString(R.string.veryhigh_status))) {
+                android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(mn);
+                alertDialog.setTitle("小提醒")
+                        .setIcon(R.drawable.ic_warning_black_18dp)
+                        .setMessage(R.string.veryhigh_advice);
+                if (isActive) {
+                    alertDialog.show();
+
+                }
+                uv_status = mn.getResources().getString(R.string.veryhigh_status);
+            }
         }
         //高量級
         else if(data[0]>=6) {
             UVstatus.setText(R.string.high_status);
             UVProgressBar.setProgress(Math.round(100.0f / 11.0f * data[0]));
+            if(show_uv && !uv_status.equals(mn.getResources().getString(R.string.high_status))) {
+                android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(mn);
+                alertDialog.setTitle("小提醒")
+                        .setIcon(R.drawable.ic_warning_black_18dp)
+                        .setMessage(R.string.high_advice);
+                if (isActive) {
+                    alertDialog.show();
+
+                }
+                uv_status = mn.getResources().getString(R.string.high_status);
+            }
         }
         //中量級
         else if(data[0]>=3) {
             UVstatus.setText(R.string.medium_status);
             UVProgressBar.setProgress(Math.round(100.0f / 11.0f * data[0]));
+            if(show_uv && !uv_status.equals(mn.getResources().getString(R.string.medium_status))) {
+                android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(mn);
+                alertDialog.setTitle("小提醒")
+                        .setIcon(R.drawable.ic_warning_black_18dp)
+                        .setMessage(R.string.medium_advice);
+                if (isActive) {
+                    alertDialog.show();
+
+                }
+                uv_status = mn.getResources().getString(R.string.medium_status);
+            }
         }
         //低量級
         else {
@@ -274,22 +400,50 @@ public class THU extends AppCompatActivity {
         }
     }
     public static void HeatstrokeCalc(){
-        String message = "";
+
         data = DataTransform.getData();
+        Log.e("THU",String.valueOf(sunstroke_status));
         //危險等級
-        if(data[1]+data[2]*0.1>40) {
+        if(data[1]+data[2]*0.1>=40 ) {
             HeatstrokeStatus.setText(R.string.danger_status);
             HeatstrokeProgressBar.setProgress(100);
+            if(show_sunstroke &&  sunstroke_status != 4) {
+                android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(mn);
+                alertDialog.setTitle("小提醒")
+                        .setIcon(R.drawable.ic_warning_black_18dp)
+                        .setMessage(R.string.danger_advice);
+
+                    //说明系统中不存在这个activity
+                if (isActive) {
+                    alertDialog.show();
+
+                }
+
+                sunstroke_status = 4;
+            }
 
         }
         //警戒範圍
-        else if(data[1]+data[2]*0.1 >=35) {
+        else if(data[1]+data[2]*0.1 >=35 && data[1]+data[2]*0.1 < 40) {
             HeatstrokeStatus.setText(R.string.careful_status);
-            HeatstrokeProgressBar.setProgress(((int)Math.round(data[1]+data[2]*0.1) - 30)*10);
+            HeatstrokeProgressBar.setProgress(((int) Math.round(data[1] + data[2] * 0.1) - 30) * 10);
+            if(show_sunstroke &&  sunstroke_status != 3) {
+                android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(mn);
+                alertDialog.setTitle("小提醒")
+                        .setIcon(R.drawable.ic_warning_black_18dp)
+                        .setMessage(R.string.careful_advice);
+
+                if (isActive) {
+                    alertDialog.show();
+
+                }
+
+                sunstroke_status = 3;
+            }
         }
 
         //需注意
-        else if(data[1]+data[2]*0.1 >=30) {
+        else if(data[1]+data[2]*0.1 >=30 && data[1]+data[2]*0.1 < 35) {
             HeatstrokeStatus.setText(R.string.warning_status);
             HeatstrokeProgressBar.setProgress(((int) Math.round(data[1] + data[2] * 0.1) - 30) * 10);
         }
@@ -298,7 +452,7 @@ public class THU extends AppCompatActivity {
             HeatstrokeStatus.setText(R.string.safe_status);
             HeatstrokeProgressBar.setProgress(0);
         }
-        
+
 
     }
 
@@ -314,9 +468,18 @@ public class THU extends AppCompatActivity {
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
+
         Log.e("THU application", "--- ON DESTROY ---");
         for(int i=0;i<3;i++)
             MainActivity.SendMorSensorStop();
+        super.onDestroy();
+    }
+    @Override
+    public void onPause() {
+        super.onPause();  // Always call the superclass method first
+
+        // Release the Camera because we don't need it when paused
+        // and other activities might need to use it.
+        isActive = false;
     }
 }

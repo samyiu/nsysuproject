@@ -1,11 +1,14 @@
 package tw.edu.nsysu.morsenser_morfeeling;
 
+import android.app.ActivityManager;
 import android.app.NotificationManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,6 +37,12 @@ public class Setting extends AppCompatActivity {
         sunstroke = (Switch)findViewById(R.id.sw_sunstroke);
         uv = (Switch)findViewById(R.id.sw_uv);
         logout = (Button)findViewById(R.id.logout);
+        if(THU.show_comfort)
+            comfort.setChecked(true);
+        if(THU.show_uv)
+            uv.setChecked(true);
+        if(THU.show_sunstroke)
+            sunstroke.setChecked(true);
         comfort.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(Switch view, boolean checked) {
@@ -70,16 +79,25 @@ public class Setting extends AppCompatActivity {
                         (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                 // mId allows you to update the notification later on.
                 mNotificationManager.cancel(1);
+                for(int i=0;i<3;i++)
+                    MainActivity.SendMorSensorStop();
                 Intent intent = new Intent();
                 intent.setClass(Setting.this,Login.class);
                 startActivity(intent);
                 finish();
             }
         });
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        ActivityManager.RunningTaskInfo info = manager.getRunningTasks(1).get(0);
+        String shortClassName = info.topActivity.getShortClassName();    //类名
+        String className = info.topActivity.getClassName();              //完整类名
+        String packageName = info.topActivity.getPackageName();
+        Log.e(className,packageName);
     }
     @Override
     public void onResume() {
         super.onResume();
+
 
     }
     @Override
@@ -88,8 +106,8 @@ public class Setting extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
 
-        Intent intent = new Intent(this, THU.class);
-        startActivity(intent);
+        //Intent intent = new Intent(this, THU.class);
+        //startActivity(intent);
         finish();
 
 

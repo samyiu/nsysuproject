@@ -102,10 +102,10 @@ public class Login extends AppCompatActivity {
         String user = settings.getString(USER, "");
         String pwd = settings.getString(PASS, "");
         if(!(user.equals("") || user.equals(""))){
-            Intent intent = new Intent();
-            intent.setClass(Login.this, TestTimePicker.class);
+            //Intent intent = new Intent();
+            //intent.setClass(Login.this, DeviceScanActivity.class);
             //intent.putExtra("username",user);
-            startActivity(intent);
+            login(user,pwd);
         }
 
     }
