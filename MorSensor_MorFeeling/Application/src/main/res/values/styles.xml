@@ -38,8 +38,8 @@
         <item name="colorControlHighlight">@color/colorControlHighlight</item>
         <item name="colorSwitchThumbNormal">@color/colorSwitchThumbNormal</item>
         <item name="android:textColorPrimary">@color/colorTextPrimary</item>
+        <item name="android:textColor">@drawable/selector</item>
     </style>
-
 
 
     <style name="Button" parent="@android:style/Widget.Button">  
@@ -56,12 +56,8 @@
         <item name="android:clickable">true</item>  
     </style>
 
-    <style name="Widget.SampleMessageTile">
-        <item name="android:background">@drawable/tile</item>
-        <item name="android:shadowColor">#7F000000</item>
-        <item name="android:shadowDy">-3.5</item>
-        <item name="android:shadowRadius">2</item>
-    </style>
+
+
     <style name="AppBaseTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="AppBaseTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
     <style name="Theme.Transparent" parent="Theme.AppCompat.Light.NoActionBar">

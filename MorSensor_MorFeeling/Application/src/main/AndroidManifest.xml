@@ -85,11 +85,7 @@
             android:label="@string/title_activity_alcohol_view" >
             android:screenOrientation="portrait"
         </activity>
-        <activity
-            android:name=".MicViewActivity"
-            android:label="@string/title_activity_mic_view" >
-            android:screenOrientation="portrait"
-        </activity>
+
         <receiver android:name=".AlarmReceiver"/>
     </application>
 

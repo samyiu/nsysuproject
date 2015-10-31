@@ -17,6 +17,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
         android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
@@ -32,14 +33,31 @@
             android:textSize="20sp"/>
 
     </LinearLayout>
-    <Button
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="32dp"
-        android:textColor="#009688"
-        android:text="登出"
-        android:background="@drawable/my_button"
-       />
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/logout"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="32dp"
+            android:textColor="#009688"
+            android:text="登出"
+            android:background="@drawable/my_button"
+            />
+        <Button
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="32dp"
+            android:textColor="#009688"
+            android:text="重設密碼"
+            android:background="@drawable/my_button"
+            />
+
+    </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -63,7 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-
+            android:id="@+id/sw_sunstroke"
             android:checked="false"/>
     </RelativeLayout>
     <RelativeLayout
@@ -84,7 +102,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-
+            android:id="@+id/sw_uv"
             android:checked="false"/>
     </RelativeLayout>
     <RelativeLayout
@@ -100,6 +118,7 @@
             android:text="舒適度警示"
             android:textSize="20sp"/>
         <com.rey.material.widget.Switch
+            android:id="@+id/sw_comfort"
             style="@style/Material.Widget.Switch"
             android:layout_margin="5dp"
             android:layout_width="wrap_content"

@@ -242,8 +242,8 @@ public class MainActivity extends AppCompatActivity {
                     TempID = MicID;
                     SendCommands = NULL_COMMAND;
 
-                    intent.setClass(mMainActivity, MicViewActivity.class);
-                    startActivity(intent);
+                    //intent.setClass(mMainActivity, MicViewActivity.class);
+                    //startActivity(intent);
                     break;
                 case R.id.btPIR:
                     TempID = PIRID;
@@ -489,7 +489,7 @@ public class MainActivity extends AppCompatActivity {
                     case MicID: //0x13 + SensorID + RegisterAddr(Data)
                         note = "i0x13 :Sensor ID "+values[1]+" Register address "+values[2]+" ... ";
                         Log.i(TAG, note);
-                        MicViewActivity.updatelist(values);
+                        //MicViewActivity.updatelist(values);
                         break;
                     default:
                         Log.i(TAG, "Warning: Unrecognized SensorParameterReport report command!");
@@ -541,7 +541,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case MicID: //0xF1 + 0xA4 + DataSize[H] + DataSize[L]
                         SendMorSensorCommands(SEND_MORSENSOR_FILE_DATA);
-                        MicViewActivity.updatelist(values);
+                        //MicViewActivity.updatelist(values);
                         break;
                     default:
                         Log.i(TAG, "Warning: Unrecognized SensorParameterReport report command!");
@@ -556,7 +556,7 @@ public class MainActivity extends AppCompatActivity {
                         DataTransform.TransformSpO2(mDeviceData);
                         break;
                     case MicID: //0xF2 + 0xA4 + Seq[H] + Seq[L] + Data ...
-                        MicViewActivity.updatelist(values);
+                        //MicViewActivity.updatelist(values);
                         break;
                     default:
                         Log.i(TAG, "Warning: Unrecognized SensorParameterReport report command!");
