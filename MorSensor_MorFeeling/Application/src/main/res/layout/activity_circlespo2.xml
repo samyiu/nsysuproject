@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:CircleProgressView="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/BackgroundColor"
+    android:weightSum="1" >
+    <tw.edu.nsysu.morsenser_morfeeling.CircleProgressView
+        android:id="@+id/circleView_spo2"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        CircleProgressView:barColor="#ff0900"
+        CircleProgressView:barWidth="20dp"
+        CircleProgressView:contourSize="0dp"
+        CircleProgressView:rimColor="#ffe5e4"
+        CircleProgressView:rimWidth="20dp"
+        CircleProgressView:showUnit="true"
+        CircleProgressView:textColor="#ff0900"
+        CircleProgressView:unitSize="20sp"
+        CircleProgressView:textSize="60sp"
+        CircleProgressView:unit="%"
+        CircleProgressView:unitColor="#ff0900"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="血氧飽和度"
+        android:id="@+id/textView_spo2"
+        android:layout_below="@+id/circleView_spo2"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

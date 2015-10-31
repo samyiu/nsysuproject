@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:CircleProgressView="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/BackgroundColor"
+    android:weightSum="1" >
+    <tw.edu.nsysu.morsenser_morfeeling.CircleProgressView
+        android:id="@+id/circleView_heartbeat"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        CircleProgressView:barColor="#ff8400"
+        CircleProgressView:barWidth="20dp"
+        CircleProgressView:contourSize="0dp"
+        CircleProgressView:rimColor="#fff2e4"
+        CircleProgressView:rimWidth="20dp"
+        CircleProgressView:showUnit="true"
+        CircleProgressView:textColor="#ff8400"
+        CircleProgressView:unitSize="20sp"
+        CircleProgressView:textSize="60sp"
+        CircleProgressView:unit="%"
+        CircleProgressView:unitColor="#ff8400"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="心率"
+        android:id="@+id/textView_heartbeat"
+        android:layout_below="@+id/circleView_heartbeat"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

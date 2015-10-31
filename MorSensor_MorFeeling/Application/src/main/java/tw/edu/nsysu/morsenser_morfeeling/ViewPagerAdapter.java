@@ -4,6 +4,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import tw.edu.nsysu.fragment.CircleHumid;
+import tw.edu.nsysu.fragment.CircleTemp;
+import tw.edu.nsysu.fragment.CircleUV;
+
 /**
  * Created by hp1 on 21-01-2015.
  */

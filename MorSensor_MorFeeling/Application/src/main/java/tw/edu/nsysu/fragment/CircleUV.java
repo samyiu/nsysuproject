@@ -1,4 +1,4 @@
-package tw.edu.nsysu.morsenser_morfeeling;
+package tw.edu.nsysu.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,6 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import tw.edu.nsysu.dataManage.DataTransform;
+import tw.edu.nsysu.morsenser_morfeeling.CircleProgressView;
+import tw.edu.nsysu.morsenser_morfeeling.R;
 
 public class CircleUV extends Fragment {
     static LinearLayout content;

@@ -1,4 +1,4 @@
-package tw.edu.nsysu.morsenser_morfeeling;
+package tw.edu.nsysu.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -6,22 +6,23 @@ import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-
 
 import tw.edu.nsysu.dataManage.DataTransform;
+import tw.edu.nsysu.morsenser_morfeeling.CircleProgressView;
+import tw.edu.nsysu.morsenser_morfeeling.MainActivity;
+import tw.edu.nsysu.morsenser_morfeeling.R;
 
-public class CircleHumid extends Fragment {
-    static LinearLayout content;
-    static float data[] = new float[3];
+public class CircleSpo2 extends Fragment {
+    static float data[] = new float[6];
     static FragmentActivity mFragAtvt;
     static CircleProgressView mCircleView;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.activity_circlehumid, container, false);
+        View v = inflater.inflate(R.layout.activity_circlespo2, container, false);
         mFragAtvt = getActivity();
-        mCircleView = (CircleProgressView) v.findViewById(R.id.circleView);
-        mCircleView.setValue(56);
+        MainActivity.SendMorSensorCommands(MainActivity.SEND_MORSENSOR_FILE_DATA_SIZE);
+        mCircleView = (CircleProgressView) v.findViewById(R.id.circleView_spo2);
+        mCircleView.setValue(1);
         return v;
     }
     @Override
@@ -49,6 +50,20 @@ public class CircleHumid extends Fragment {
     }
     public void drawCircleProgress(){
         data = DataTransform.getData();
-        mCircleView.setValue(data[2]);
+        mCircleView.setValue(data[4]);
     }
+
+    public static void update() {
+        data = DataTransform.getData();
+        if(data[6]==1024){
+            try {
+                Thread.sleep(1000);
+                MainActivity.SendMorSensorCommands(MainActivity.SEND_MORSENSOR_FILE_DATA_SIZE);
+            } catch (InterruptedException e) {
+                // manage error ...
+            }
+        }
+    }
+
+
 }
