@@ -106,8 +106,6 @@ public class MainActivity extends AppCompatActivity {
     public static String mDeviceAddress="123",mDeviceName="",mDeviceData="";
     private final String LIST_NAME = "NAME";
     private final String LIST_UUID = "UUID";
-    private static boolean CommandSended = false;
-
 
     Button btIMU, btTH, btColor, btSpO2, btAlcohol, btMic, btPIR;
     TextView tv_MorSensorVersion, tv_FirmwaveVersion, tv_MorSensorID;
@@ -150,9 +148,6 @@ public class MainActivity extends AppCompatActivity {
         tv_MorSensorID.setText(SensorName);
         tv_MorSensorVersion.setText(MorSensor_Version);
         tv_FirmwaveVersion.setText(Firmwave_Version);
-
-        getSupportActionBar().setDisplayUseLogoEnabled(true);
-        //getSupportActionBar().setIcon(R.drawable.icon);
     }
 
     @Override
@@ -170,27 +165,6 @@ public class MainActivity extends AppCompatActivity {
 
     static byte[] RawCommand = new byte[20];
     private static short[] command={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-
-    public void connect() {
-        Intent intent = new Intent();
-        for(int i=0;i<command.length;i++){ command[i]=0; }
-
-        TempID = THID;
-        command = MorSensorCommand.GetSensorData(THID);
-        SendCommands = SEND_MORSENSOR_CONTINUOUS_UV;
-
-        intent.setClass(mMainActivity, THU.class);
-        startActivity(intent);
-
-        for(int i=0;i<20;i++)
-            RawCommand[i]=(byte)command[i];
-
-        // Send Command
-        mWriteCharacteristic.setValue(RawCommand);
-        mBluetoothLeService.writeCharacteristic(mWriteCharacteristic);
-        Log.e(TAG, "connect " + command[0] + "," + command[1] + "," + command[2] + "," + command[3]);
-    }
-
     // 定義  onClick() 方法
     private Button.OnClickListener myListner=new Button.OnClickListener(){
         @Override
@@ -203,6 +177,7 @@ public class MainActivity extends AppCompatActivity {
                     command = MorSensorCommand.GetSensorData(IMUID);
 
                     intent.setClass(mMainActivity, IMU.class);
+//                    intent.setClass(mMainActivity, IMUViewPlusActivity.class);
                     startActivity(intent);
                     break;
                 case R.id.btTH:
@@ -210,24 +185,24 @@ public class MainActivity extends AppCompatActivity {
                     command = MorSensorCommand.GetSensorData(THID);
                     SendCommands = SEND_MORSENSOR_CONTINUOUS_UV;
 
-                    intent.setClass(mMainActivity, THU.class);
-                    startActivity(intent);
+                    //intent.setClass(mMainActivity, THUViewActivity.class);
+                    //intent.setClass(mMainActivity, THU.class);
+                    //intent.setClass(mMainActivity, THU_application.class);
+                    //startActivity(intent);
                     break;
                 case R.id.btColor:
                     TempID = ColorID;
-                    command = MorSensorCommand.SetLEDOn((short)IN_IN_COLOR_SENSOR_LED);
+                    command = MorSensorCommand.SetLEDOn((short) IN_IN_COLOR_SENSOR_LED);
                     SendCommands = NULL_COMMAND;
 
-                    //intent.setClass(mMainActivity, ColorViewActivity.class);
-                    //startActivity(intent);
                     break;
                 case R.id.btSpO2:
                     TempID = SpO2ID;
                     command = MorSensorCommand.SetSpO2SensorLEDOn(SpO2ID);
                     SendCommands = NULL_COMMAND;
 
-                    //intent.setClass(mMainActivity, SpO2_application.class);
                     intent.setClass(mMainActivity, SPO2.class);
+                    //intent.setClass(mMainActivity, SpO2ViewActivity.class);
                     startActivity(intent);
                     break;
                 case R.id.btAlcohol:
@@ -235,23 +210,19 @@ public class MainActivity extends AppCompatActivity {
                     command = MorSensorCommand.GetSensorData(AlcoholID);
                     SendCommands = NULL_COMMAND;
 
-                    //intent.setClass(mMainActivity, AlcoholViewActivity.class);
-                    //startActivity(intent);
                     break;
                 case R.id.btMic:
                     TempID = MicID;
                     SendCommands = NULL_COMMAND;
 
-                    //intent.setClass(mMainActivity, MicViewActivity.class);
-                    //startActivity(intent);
+
                     break;
                 case R.id.btPIR:
                     TempID = PIRID;
                     command = MorSensorCommand.GetSensorData(PIRID);
                     SendCommands = NULL_COMMAND;
 
-                    //intent.setClass(mMainActivity, PIRViewActivity.class);
-                    //startActivity(intent);
+
                     break;
             }
             for(int i=0;i<20;i++)
@@ -275,7 +246,7 @@ public class MainActivity extends AppCompatActivity {
             // Send Command
             mWriteCharacteristic.setValue(RawCommand);
             mBluetoothLeService.writeCharacteristic(mWriteCharacteristic);
-            Log.e(TAG,"SendMorSensorStop " + TempID);
+            Log.e(TAG, "SendMorSensorStop " + TempID);
 
             if(TempID == THID){
                 Thread.sleep(300);
@@ -287,7 +258,7 @@ public class MainActivity extends AppCompatActivity {
                 // Send Command
                 mWriteCharacteristic.setValue(RawCommand);
                 mBluetoothLeService.writeCharacteristic(mWriteCharacteristic);
-                Log.e(TAG,"SendMorSensorStop " + TempID);
+                Log.e(TAG, "SendMorSensorStop " + TempID);
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -295,28 +266,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static short lost1, lost2;
-
-
-    public void BtDisConnect(){
-        if(mConnected)
-        {
-            mConnected = false;
-            mDeviceAddress="123";
-            if(mBluetoothLeService == null || mWriteCharacteristic == null) return;
-            if(receviewData){
-                for(int i=0;i<3;i++)
-                    SendMorSensorStop();
-                receviewData = false;
-            }
-
-            mBluetoothLeService.disconnect();
-            unregisterReceiver(mGattUpdateReceiver);
-//                unbindService(mServiceConnection);
-            mBluetoothLeService = null;
-            this.finish();
-            Log.i(TAG, "BluetoothLe Disconnected.");
-        }
-    }
     public static void SendMorSensorCommands(int SendCommand) {
         if(SendCommand == NULL_COMMAND) return;
 
@@ -369,6 +318,28 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    public void BtDisConnect(){
+        if(mConnected)
+        {
+            mConnected = false;
+            mDeviceAddress="123";
+            if(mBluetoothLeService == null || mWriteCharacteristic == null) return;
+            if(receviewData){
+                for(int i=0;i<3;i++)
+                    SendMorSensorStop();
+                receviewData = false;
+            }
+
+            mBluetoothLeService.disconnect();
+            unregisterReceiver(mGattUpdateReceiver);
+//                unbindService(mServiceConnection);
+            mBluetoothLeService = null;
+            this.finish();
+            Log.i(TAG, "BluetoothLe Disconnected.");
+        }
+    }
+
     private final BroadcastReceiver mGattUpdateReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -401,11 +372,6 @@ public class MainActivity extends AppCompatActivity {
                 case THID:
                     SensorName += "THUSensor ";
                     btTH.setEnabled(mEnabled);
-
-                    if(mEnabled && !CommandSended) {
-                        CommandSended = true;
-                        connect();
-                    }
                     break;
                 case UVID:
                     btTH.setEnabled(mEnabled);
@@ -573,7 +539,6 @@ public class MainActivity extends AppCompatActivity {
                 else if(values[1] == THID){
                     if(!UVStart){ SendMorSensorCommands(SEND_MORSENSOR_CONTINUOUS_UV); }
                     DataTransform.TransformTempHumi(values);
-
                 }
                 else if(values[1] == UVID){ UVStart = true; DataTransform.TransformUV(values); }
                 else if(values[1] == ColorID){ DataTransform.TransformColor(values); }
@@ -585,7 +550,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(TAG, "Warning:Incorrect output command format! " + mDeviceData);
                 break;
         }
-        Log.d(TAG,"mDeviceData:"+mDeviceData);
+        Log.d(TAG, "mDeviceData:" + mDeviceData);
     }
 
     // Code to manage Service lifecycle.
@@ -602,7 +567,6 @@ public class MainActivity extends AppCompatActivity {
             if(!mConnected){
                 mBluetoothLeService.connect(mDeviceAddress);
                 mConnected = true;
-
             }
         }
 
@@ -692,7 +656,6 @@ public class MainActivity extends AppCompatActivity {
             mGattCharacteristics.add(charas);
             gattCharacteristicData.add(gattCharacteristicGroupData);
         }
-
     }
 
     private static IntentFilter makeGattUpdateIntentFilter() {

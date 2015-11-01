@@ -64,6 +64,13 @@
             android:id="@+id/button_wakeup"
             android:layout_alignParentBottom="true"
             android:layout_alignStart="@+id/button_intense" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="START TEST"
+            android:id="@+id/start_test"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/button_wakeup" />
     </RelativeLayout>
 
 </LinearLayout>

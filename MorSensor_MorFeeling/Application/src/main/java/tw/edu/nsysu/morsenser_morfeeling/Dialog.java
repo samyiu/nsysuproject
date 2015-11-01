@@ -23,8 +23,9 @@ public class Dialog extends AppCompatActivity implements DialogInterface.OnCance
             default:
         }
         AlertDialog.Builder alertDialog= new AlertDialog.Builder(Dialog.this);
-        alertDialog.setTitle("HI~")
-        .setMessage(message)
+        alertDialog.setTitle("小提醒")
+        .setMessage("是時候測量心跳、血氧了!")
+                .setIcon(R.drawable.ic_warning_black_18dp)
         .setOnCancelListener(this);
         alertDialog.show();
     }

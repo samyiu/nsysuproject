@@ -23,9 +23,9 @@ public class AlarmReceiver extends BroadcastReceiver {
         Toast.makeText(context,"Time's up!!",Toast.LENGTH_SHORT).show();
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(context)
-                        .setSmallIcon(R.drawable.bed)
-                        .setContentTitle("Time's up")
-                        .setContentText("Hello World!");
+                        .setSmallIcon(R.drawable.thu_app_icon)
+                        .setContentTitle("小提醒")
+                        .setContentText("是時候測量心跳、血氧了!");
         Intent resultIntent = new Intent(context, Login.class);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
 // Adds the back stack for the Intent (but not the Intent itself)

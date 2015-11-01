@@ -3,9 +3,9 @@ package tw.edu.nsysu.dataManage;
 import android.util.Log;
 import android.widget.Toast;
 
-import tw.edu.nsysu.fragment.CircleHeartbeat;
-import tw.edu.nsysu.fragment.CircleSpo2;
 import tw.edu.nsysu.morsenser_morfeeling.MainActivity;
+
+import tw.edu.nsysu.morsenser_morfeeling.result;
 
 /**
  * Created by 1404011 on 2015/5/4.
@@ -45,6 +45,7 @@ public class DataTransform {
         data[8] = (float)((short) (RawData[19] * 256 + RawData[18]) / 3.41 / -100); //Mag z
 
 
+        //IMU.haha();
         //IMUViewPlusActivity.DisplayIMUData();
     }
 
@@ -59,6 +60,8 @@ public class DataTransform {
         data[2] = (float) (RH_data * 125.0 / 65536.0 - 6.0); //RH
 
         //THU.haha();
+        //Temp_application.haha();
+        //comfort_application.haha();
     }
 
 
@@ -71,6 +74,8 @@ public class DataTransform {
         data[0] = (float) (UV_data / 100.0); //UV
 
         //THU.haha();
+
+        //UV_appliaction.haha();
     }
 
     public static float RedCalibration = 1;
@@ -86,15 +91,14 @@ public class DataTransform {
         data[0] = RawData[3];
         data[1] = RawData[5];
         data[2] = RawData[7];
-/*
-        if(ColorViewActivity.Calibration){
+
+        /*if(ColorViewActivity.Calibration){
             RedCalibration = 255f / data[0];
             GreenCalibration = 255f / data[1];
             BlueCalibration = 255f / data[2];
 
             ColorViewActivity.Calibration = false;
-        }
-        */
+        }*/
 //        Log.e(TAG,"RedCalibration:"+RedCalibration+" GreenCalibration:"+GreenCalibration+" BlueCalibration:"+BlueCalibration);
 
         data[0] *= RedCalibration;
@@ -106,9 +110,9 @@ public class DataTransform {
 //        Log.e(TAG,"Calibration data[0]:"+data[0]+" data[1]:"+data[1]+" data[2]:"+data[2]);
 
 
-        Red = Integer.toHexString((int)data[0] & 0xFF);
-        Green = Integer.toHexString((int)data[1] & 0xFF);
-        Blue = Integer.toHexString((int)data[2] & 0xFF);
+        Red = Integer.toHexString((int) data[0] & 0xFF);
+        Green = Integer.toHexString((int) data[1] & 0xFF);
+        Blue = Integer.toHexString((int) data[2] & 0xFF);
 
         if(Red.length()==1){ Red = "0" + Red;}
         if(Green.length()==1){ Green = "0" + Green;}
@@ -201,7 +205,7 @@ public class DataTransform {
     public static void TransformSpO2(String value) {
 //        if(value.equals("FBA007D000000000000000000000000000000000")){ //1000
         if(value.equals("F1A0080000000000000000000000000000000000")){ //1024
-            Log.i(TAG,"Initial");
+            Log.i(TAG, "Initial");
             count = 0;
             IR = 0; RED = 0; SpO2Data = 0; HeartRateData = 0;
             Red_DC = 0; Red_AC = 0; IR_DC = 0; IR_AC = 0;
@@ -256,15 +260,16 @@ public class DataTransform {
 
             if(data[6] == 1024){
                 data[5] = HeartRateData = (int)(SpO2Transform.FixedToFloatHeartRate(RawIRdata) * 10) / 10f;
-                Log.d(TAG, "count:"+data[6]+" SpO2Data:" + SpO2Data + " HeartRateData:"+HeartRateData + " IR:"+IR+" RED:"+RED);
+                Log.d(TAG, "count:" + data[6] + " SpO2Data:" + SpO2Data + " HeartRateData:" + HeartRateData + " IR:" + IR + " RED:" + RED);
             }
 
-            CircleSpo2.update();
-            CircleHeartbeat.update();
+            //GoalFragment.haha();
+            //History_application_frag.haha();
+            result.haha();
 
         }else{ //LED2 = RED
-            data[0] = (float)LED[0] * 1.2f / (float)Math.pow(2,21); //RED
-            data[1] = (float)LED[1] * 1.2f / (float)Math.pow(2,21); //RED A
+            data[0] = (float)LED[0] * 1.2f / (float) Math.pow(2, 21); //RED
+            data[1] = (float)LED[1] * 1.2f / (float) Math.pow(2, 21); //RED A
 
             Red_DC_Raw += data[0];
             if(count==1){

@@ -109,7 +109,7 @@ public class SpO2Transform {
     static int time_value = 0;
     public static double FixedToFloatHeartRate(double[] fixedValueIR)
     {
-        Log.e(TAG,"Dif_v:"+Dif_v);
+        Log.e(TAG, "Dif_v:" + Dif_v);
         int i = 0, j = 0;
         for (time_value = 0; time_value < (data_size - windows_size); time_value++)
         {

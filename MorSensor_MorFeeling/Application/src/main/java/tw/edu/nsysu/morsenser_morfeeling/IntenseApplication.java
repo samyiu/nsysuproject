@@ -1,18 +1,25 @@
 package tw.edu.nsysu.morsenser_morfeeling;
 
+import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.Menu;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
@@ -25,79 +32,76 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import me.relex.circleindicator.CircleIndicator;
-import tw.edu.nsysu.fragment.CircleHeartbeat;
-import tw.edu.nsysu.fragment.CircleSpo2;
+import tw.edu.nsysu.dataManage.DataTransform;
 
-public class SPO2 extends AppCompatActivity {
+
+public class IntenseApplication extends AppCompatActivity {
+
+    TextView txt_avg;
+    static ImageView click;
+    static LinearLayout content;
+
+    static FragmentActivity mn;
+    Button test;
+
+    int average=0;
 
     JSONParser jsonParser = new JSONParser();
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
     private static final String TAG_POST = "posts";
     private List<HashMap<String, Object>> mData;
-    static Toolbar toolbar;
-    static Button buttonIntense;
-    static Button buttonWakeup;
-    static Button buttonGoal;
-    static Button test;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_spo2);
-        toolbar = (Toolbar)findViewById(R.id.my_toolbar);
-        setSupportActionBar(toolbar);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        CircleIndicator myIndicator = (CircleIndicator)findViewById(R.id.indicator_spo2);
-        ViewPagerAdapterSpO2 adapter = new ViewPagerAdapterSpO2(getSupportFragmentManager());
-        ViewPager pager = (ViewPager)findViewById(R.id.pager_spo2);
-        pager.setAdapter(adapter);
-        /*myIndicator.setViewPager(pager);*/
-
-        buttonGoal = (Button)findViewById(R.id.button_goal);
-        buttonGoal.setOnClickListener(new View.OnClickListener() {
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setContentView(R.layout.spo2_intense);
+        test = (Button) findViewById(R.id.intense_test);
+        click = (ImageView)findViewById(R.id.click);
+        content = (LinearLayout)findViewById(R.id.content);
+        content.setVisibility(View.GONE);
+        click.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SPO2.this, GoalApplication.class);
-                startActivity(intent);
+            public void onClick(View view) {
+                toggle_contents(content);
             }
         });
-        buttonWakeup = (Button)findViewById(R.id.button_wakeup);
-        buttonWakeup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SPO2.this, WakeupApplication.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-        buttonIntense = (Button)findViewById(R.id.button_intense);
-        buttonIntense.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SPO2.this, IntenseApplication.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-        test = (Button)findViewById(R.id.start_test);
         test.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 MainActivity.SendMorSensorCommands(MainActivity.SEND_MORSENSOR_FILE_DATA_SIZE); //SEND_MORSENSOR_FILE_DATA_SIZE
-                Intent intent = new Intent(SPO2.this, result.class);
+                Intent intent = new Intent(IntenseApplication.this, result.class);
+                Bundle b = new Bundle();
+                b.putString("from", "intense");
+                b.putInt("average", average);
+                intent.putExtras(b);
                 startActivity(intent);
                 finish();
             }
         });
+        txt_avg = (TextView) findViewById(R.id.spo2_average);
 
+        /*itemDAO = new tw.edu.nsysu.database.ItemSpO2_app(getActivity());
+        items = itemDAO.getimage();
+        //Toast.makeText(getActivity(),String.valueOf(items.size()),Toast.LENGTH_LONG).show();
+        if(items.size() > 0){
+            for(int i=0;i<items.size();i++) {
+                average+= Integer.parseInt(items.get(i).get("info").toString());
+            }
+            average = Math.round(average / items.size());
+            Toast.makeText(IntenseApplication.this, String.valueOf(average), Toast.LENGTH_LONG).show();
+            txt_avg.setText(String.valueOf(average) + " %");
+        }*/
 
         SharedPreferences settings = getSharedPreferences(Login.LOGIN, 0);
         String user = settings.getString(Login.USER, "");
         String pwd = settings.getString(Login.PASS, "");
         get(user);
-    }
+
+	}
 
     private void get(final String username) {
 
@@ -114,13 +118,13 @@ public class SPO2 extends AppCompatActivity {
             @Override
             protected String doInBackground(String... params) {
                 int success;
-                Log.d("doInBackground","haha");
+                Log.d("doInBackground", "haha");
                 String uname = params[0];
 
                 List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
                 nameValuePairs.add(new BasicNameValuePair("username", uname));
                 nameValuePairs.add(new BasicNameValuePair("all", "no"));
-                nameValuePairs.add(new BasicNameValuePair("image", String.valueOf(R.drawable.walking)));
+                nameValuePairs.add(new BasicNameValuePair("image", String.valueOf(R.drawable.flexions)));
 
 
 
@@ -180,11 +184,11 @@ public class SPO2 extends AppCompatActivity {
                     float totalbeat= 0.0f;
                     if(mData.size()>0) {
                         for (int i = 0; i < mData.size(); i++) {
-                            totalspo2 += Float.parseFloat(mData.get(i).get("spo2").toString());
-                            totalbeat += Float.parseFloat(mData.get(i).get("heartrate").toString());
+                            average+= Float.parseFloat(mData.get(i).get("spo2").toString());
                         }
-                        CircleSpo2.average = totalspo2 / mData.size();
-                        CircleHeartbeat.average = totalbeat / mData.size();
+                        average = Math.round(average / mData.size());
+                        Toast.makeText(IntenseApplication.this, String.valueOf(average), Toast.LENGTH_LONG).show();
+                        txt_avg.setText(String.valueOf(average) + " %");
                     }
                 }
             }
@@ -194,65 +198,52 @@ public class SPO2 extends AppCompatActivity {
         la.execute(username);
 
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_spo2, menu);
-        return true;
-    }
+    public void toggle_contents(View v){
+        if(content.isShown()){
+            slide_up(IntenseApplication.this, content);
+            content.setVisibility(View.GONE);
+        }
+        else{
+            content.setVisibility(View.VISIBLE);
+            slide_down(IntenseApplication.this, content);
+        }
 
+    }
+    public static void slide_down(Context ctx, View v){
+        Animation a = AnimationUtils.loadAnimation(ctx, R.anim.slide_down);
+        if(a != null){
+            a.reset();
+            if(v != null){
+                v.clearAnimation();
+                v.startAnimation(a);
+            }
+        }
+    }
+    public static void slide_up(Context ctx, View v){
+        Animation a = AnimationUtils.loadAnimation(ctx, R.anim.slide_up);
+        if(a != null){
+            a.reset();
+            if(v != null){
+                v.clearAnimation();
+                v.startAnimation(a);
+            }
+        }
+    }
+    static float data[] = new float[6];
+    public static void haha(){
+        data = DataTransform.getData();
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_spo2_setting) {
-
-            Intent intent = new Intent(this, Setting_SPO2.class);
-            startActivity(intent);
-            finish();
-
-            return true;
-        }
-        else if(id == R.id.action_spo2_history){
-            Intent intent = new Intent(this, History.class);
-            startActivity(intent);
-            finish();
-            return true;
-        }
-
+        Intent returnIntent = new Intent(IntenseApplication.this, SPO2.class);
+        startActivity(returnIntent);
+        finish();
 
         return super.onOptionsItemSelected(item);
     }
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event)
-    {
-        if ((keyCode == KeyEvent.KEYCODE_BACK))
-        {
-            this.finish();
-        }
-        return super.onKeyDown(keyCode, event);
-    }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        /*Log.e("SPO2 application", "--- ON DESTROY ---");
-        for(int i=0;i<3;i++)
-            MainActivity.SendMorSensorStop();*/
-    }
-    @Override
-    public void onPause() {
-        super.onPause();
 
-    }
-    @Override
-    public void onResume() {
-        super.onResume();
 
-    }
+
 
 }

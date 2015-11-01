@@ -13,6 +13,7 @@ import tw.edu.nsysu.morsenser_morfeeling.MainActivity;
 import tw.edu.nsysu.morsenser_morfeeling.R;
 
 public class CircleHeartbeat extends Fragment {
+    public static float average = 0.0f;
     static float data[] = new float[6];
     static FragmentActivity mFragAtvt;
     static CircleProgressView mCircleView;
@@ -20,9 +21,9 @@ public class CircleHeartbeat extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_circleheartbeat, container, false);
         mFragAtvt = getActivity();
-        MainActivity.SendMorSensorCommands(MainActivity.SEND_MORSENSOR_FILE_DATA_SIZE);
+        //MainActivity.SendMorSensorCommands(MainActivity.SEND_MORSENSOR_FILE_DATA_SIZE);
         mCircleView = (CircleProgressView) v.findViewById(R.id.circleView_heartbeat);
-        mCircleView.setValue(1);
+        mCircleView.setValue(average);
         return v;
     }
     @Override
@@ -49,8 +50,8 @@ public class CircleHeartbeat extends Fragment {
         }).start();
     }
     public void drawCircleProgress(){
-        data = DataTransform.getData();
-        mCircleView.setValue(data[5]);
+        //data = DataTransform.getData();
+        mCircleView.setValue(average);
     }
 
     public static void update() {
