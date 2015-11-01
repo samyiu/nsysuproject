@@ -190,7 +190,25 @@ public class MainActivity extends AppCompatActivity {
         mBluetoothLeService.writeCharacteristic(mWriteCharacteristic);
         Log.e(TAG, "connect " + command[0] + "," + command[1] + "," + command[2] + "," + command[3]);
     }
+    public void connectSPO2() {
+        Intent intent = new Intent();
+        for(int i=0;i<command.length;i++){ command[i]=0; }
 
+        TempID = SpO2ID;
+        command = MorSensorCommand.GetSensorData(SpO2ID);
+        SendCommands = NULL_COMMAND;
+
+        intent.setClass(mMainActivity, SPO2.class);
+        startActivity(intent);
+
+        for(int i=0;i<20;i++)
+            RawCommand[i]=(byte)command[i];
+
+        // Send Command
+        mWriteCharacteristic.setValue(RawCommand);
+        mBluetoothLeService.writeCharacteristic(mWriteCharacteristic);
+        Log.e(TAG, "connect " + command[0] + "," + command[1] + "," + command[2] + "," + command[3]);
+    }
     public static void SendMorSensorStop() {
         try {
             Thread.sleep(300);
@@ -346,6 +364,14 @@ public class MainActivity extends AppCompatActivity {
                 case SpO2ID:
                     SensorName += "SpO2Sensor ";
                     //btSpO2.setEnabled(mEnabled);
+
+                    //if(mEnabled && !CommandSended) {
+                    //    CommandSended = true;
+                    if(mEnabled) {
+                        Log.i(TAG, "oohohohohoh");
+                        connectSPO2();
+                    }
+                    //}
                     break;
                 case AlcoholID:
                     SensorName += "AlcoholSensor ";

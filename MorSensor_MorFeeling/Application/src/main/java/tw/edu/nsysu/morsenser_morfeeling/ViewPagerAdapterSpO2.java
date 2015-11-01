@@ -16,7 +16,7 @@ import tw.edu.nsysu.fragment.CircleUV;
 public class ViewPagerAdapterSpO2 extends FragmentPagerAdapter {
 
     CharSequence Titles[]; // This will Store the Titles of the Tabs which are Going to be passed when ViewPagerAdapter is created
-    private int NumbOfTabs =3; // Store the number of tabs, this will also be passed when the ViewPagerAdapter is created
+    private int NumbOfTabs =2; // Store the number of tabs, this will also be passed when the ViewPagerAdapter is created
 
     // Build a Constructor and assign the passed Values to appropriate values in the class
     public ViewPagerAdapterSpO2(FragmentManager fm) {

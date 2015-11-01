@@ -53,7 +53,7 @@ public class SPO2 extends AppCompatActivity {
         ViewPagerAdapterSpO2 adapter = new ViewPagerAdapterSpO2(getSupportFragmentManager());
         ViewPager pager = (ViewPager)findViewById(R.id.pager_spo2);
         pager.setAdapter(adapter);
-        /*myIndicator.setViewPager(pager);*/
+        myIndicator.setViewPager(pager);
 
         buttonGoal = (Button)findViewById(R.id.button_goal);
         buttonGoal.setOnClickListener(new View.OnClickListener() {
