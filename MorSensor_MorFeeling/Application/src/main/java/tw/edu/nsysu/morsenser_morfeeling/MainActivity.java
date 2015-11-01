@@ -12,8 +12,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -21,7 +23,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.skyfishjy.library.RippleBackground;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -108,9 +113,8 @@ public class MainActivity extends AppCompatActivity {
     private final String LIST_UUID = "UUID";
     private static boolean CommandSended = false;
 
-
-    Button btIMU, btTH, btColor, btSpO2, btAlcohol, btMic, btPIR;
-    TextView tv_MorSensorVersion, tv_FirmwaveVersion, tv_MorSensorID;
+    View coordinatorLayoutView;
+    RippleBackground rippleBackground;
     static String MorSensor_Version = "", Firmwave_Version = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,39 +124,30 @@ public class MainActivity extends AppCompatActivity {
 
         mMainActivity = this;
 
-
         //Receive DeviceScanActivity DeviceAddress.
         final Intent intent = getIntent();
         mDeviceAddress = intent.getStringExtra(EXTRAS_DEVICE_ADDRESS);
 
-        // 取得資源類別檔中的介面元件
-        btIMU = (Button)findViewById(R.id.btIMU);
-        btTH = (Button)findViewById(R.id.btTH);
-        btColor = (Button)findViewById(R.id.btColor);
-        btSpO2 = (Button)findViewById(R.id.btSpO2);
-        btAlcohol = (Button)findViewById(R.id.btAlcohol);
-        btMic = (Button)findViewById(R.id.btMic);
-        btPIR = (Button)findViewById(R.id.btPIR);
-
-        tv_MorSensorVersion = (TextView)findViewById(R.id.MorSensor_Version);
-        tv_FirmwaveVersion = (TextView)findViewById(R.id.Firmwave_Version);
-        tv_MorSensorID = (TextView)findViewById(R.id.MorSensor_ID);
-
-        // 設定 button 元件 Click 事件共用   myListner
-        btIMU.setOnClickListener(myListner);
-        btTH.setOnClickListener(myListner);
-        btColor.setOnClickListener(myListner);
-        btSpO2.setOnClickListener(myListner);
-        btAlcohol.setOnClickListener(myListner);
-        btMic.setOnClickListener(myListner);
-        btPIR.setOnClickListener(myListner);
-
-        tv_MorSensorID.setText(SensorName);
-        tv_MorSensorVersion.setText(MorSensor_Version);
-        tv_FirmwaveVersion.setText(Firmwave_Version);
-
         getSupportActionBar().setDisplayUseLogoEnabled(true);
-        //getSupportActionBar().setIcon(R.drawable.icon);
+
+        rippleBackground=(RippleBackground)findViewById(R.id.my_ripple);
+        ImageView imageView=(ImageView)findViewById(R.id.centerImage);
+        rippleBackground.startRippleAnimation();
+
+        coordinatorLayoutView = findViewById(R.id.snackbarPosition);
+        snackbarSet();
+    }
+
+    private void snackbarSet(){
+        Snackbar mysnackbar = Snackbar.make(coordinatorLayoutView,
+                R.string.snackbar_text,
+                Snackbar.LENGTH_LONG);
+        View snackbarView = mysnackbar.getView();
+
+        TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+        textView.setTextColor(Color.WHITE);
+        mysnackbar.setAction(null, null);
+        mysnackbar.show();
     }
 
     @Override
@@ -190,79 +185,6 @@ public class MainActivity extends AppCompatActivity {
         mBluetoothLeService.writeCharacteristic(mWriteCharacteristic);
         Log.e(TAG, "connect " + command[0] + "," + command[1] + "," + command[2] + "," + command[3]);
     }
-
-    // 定義  onClick() 方法
-    private Button.OnClickListener myListner=new Button.OnClickListener(){
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent();
-            switch (v.getId())
-            {
-                case R.id.btIMU:
-                    TempID = IMUID;
-                    command = MorSensorCommand.GetSensorData(IMUID);
-
-                    intent.setClass(mMainActivity, IMU.class);
-                    startActivity(intent);
-                    break;
-                case R.id.btTH:
-                    TempID = THID;
-                    command = MorSensorCommand.GetSensorData(THID);
-                    SendCommands = SEND_MORSENSOR_CONTINUOUS_UV;
-
-                    intent.setClass(mMainActivity, THU.class);
-                    startActivity(intent);
-                    break;
-                case R.id.btColor:
-                    TempID = ColorID;
-                    command = MorSensorCommand.SetLEDOn((short)IN_IN_COLOR_SENSOR_LED);
-                    SendCommands = NULL_COMMAND;
-
-                    //intent.setClass(mMainActivity, ColorViewActivity.class);
-                    //startActivity(intent);
-                    break;
-                case R.id.btSpO2:
-                    TempID = SpO2ID;
-                    command = MorSensorCommand.SetSpO2SensorLEDOn(SpO2ID);
-                    SendCommands = NULL_COMMAND;
-
-                    //intent.setClass(mMainActivity, SpO2_application.class);
-                    intent.setClass(mMainActivity, SPO2.class);
-                    startActivity(intent);
-                    break;
-                case R.id.btAlcohol:
-                    TempID = AlcoholID;
-                    command = MorSensorCommand.GetSensorData(AlcoholID);
-                    SendCommands = NULL_COMMAND;
-
-                    //intent.setClass(mMainActivity, AlcoholViewActivity.class);
-                    //startActivity(intent);
-                    break;
-                case R.id.btMic:
-                    TempID = MicID;
-                    SendCommands = NULL_COMMAND;
-
-                    //intent.setClass(mMainActivity, MicViewActivity.class);
-                    //startActivity(intent);
-                    break;
-                case R.id.btPIR:
-                    TempID = PIRID;
-                    command = MorSensorCommand.GetSensorData(PIRID);
-                    SendCommands = NULL_COMMAND;
-
-                    //intent.setClass(mMainActivity, PIRViewActivity.class);
-                    //startActivity(intent);
-                    break;
-            }
-            for(int i=0;i<20;i++)
-                RawCommand[i]=(byte)command[i];
-
-            // Send Command
-            mWriteCharacteristic.setValue(RawCommand);
-            mBluetoothLeService.writeCharacteristic(mWriteCharacteristic);
-            Log.e(TAG, "OnClickListener " + command[0] + "," + command[1] + "," + command[2] + "," + command[3]);
-        }
-    };
 
     public static void SendMorSensorStop() {
         try {
@@ -396,11 +318,11 @@ public class MainActivity extends AppCompatActivity {
             switch (MorSensorID[i]){
                 case IMUID:
                     SensorName = "IMUSensor ";
-                    btIMU.setEnabled(mEnabled);
+                    //btIMU.setEnabled(mEnabled);
                     break;
                 case THID:
                     SensorName += "THUSensor ";
-                    btTH.setEnabled(mEnabled);
+                    //btTH.setEnabled(mEnabled);
 
                     if(mEnabled && !CommandSended) {
                         CommandSended = true;
@@ -408,27 +330,27 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
                 case UVID:
-                    btTH.setEnabled(mEnabled);
+                    //btTH.setEnabled(mEnabled);
                     break;
                 case ColorID:
                     SensorName += "ColorSensor ";
-                    btColor.setEnabled(mEnabled);
+                    //btColor.setEnabled(mEnabled);
                     break;
                 case SpO2ID:
                     SensorName += "SpO2Sensor ";
-                    btSpO2.setEnabled(mEnabled);
+                    //btSpO2.setEnabled(mEnabled);
                     break;
                 case AlcoholID:
                     SensorName += "AlcoholSensor ";
-                    btAlcohol.setEnabled(mEnabled);
+                    //btAlcohol.setEnabled(mEnabled);
                     break;
                 case MicID:
                     SensorName += "MicSensor ";
-                    btMic.setEnabled(mEnabled);
+                    //btMic.setEnabled(mEnabled);
                     break;
                 case PIRID:
                     SensorName += "PIRSensor ";
-                    btPIR.setEnabled(mEnabled);
+                    //btPIR.setEnabled(mEnabled);
                     break;
             }
         }
@@ -452,7 +374,6 @@ public class MainActivity extends AppCompatActivity {
                     if(MorSensorID[i]<0){ SensorID += ((MorSensorID[i]+256) + " "); }
                     else{ SensorID += (MorSensorID[i] + " "); }
                     setButtonEnabled(true);
-                    tv_MorSensorID.setText(SensorName);
                 }
                 break;
             case IN_MORSENSOR_VERSION:
@@ -462,7 +383,7 @@ public class MainActivity extends AppCompatActivity {
                 MorSensorVersion[0] = values[1];
                 MorSensorVersion[1] = values[2];
                 MorSensorVersion[2] = values[3];
-                tv_MorSensorVersion.setText(MorSensorVersion[0]+"."+MorSensorVersion[1]+"."+MorSensorVersion[2]);
+
                 MorSensor_Version = MorSensorVersion[0]+"."+MorSensorVersion[1]+"."+MorSensorVersion[2];
                 break;
             case IN_FIRMWARE_VERSION:
@@ -472,7 +393,7 @@ public class MainActivity extends AppCompatActivity {
                 FirmwareVersion[0] = values[1];
                 FirmwareVersion[1] = values[2];
                 FirmwareVersion[2] = values[3];
-                tv_FirmwaveVersion.setText(FirmwareVersion[0] + "." + FirmwareVersion[1] + "." + FirmwareVersion[2]);
+
                 Firmwave_Version = FirmwareVersion[0] + "." + FirmwareVersion[1] + "." + FirmwareVersion[2];
                 break;
             case IN_SENSOR_VERSION:
@@ -737,7 +658,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        //getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -746,12 +667,7 @@ public class MainActivity extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+        //int id = item.getItemId();
 
         return super.onOptionsItemSelected(item);
     }
