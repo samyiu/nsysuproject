@@ -1,5 +1,7 @@
 package tw.edu.nsysu.morsenser_morfeeling;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -61,6 +63,9 @@ public class SPO2 extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(SPO2.this, GoalApplication.class);
                 startActivity(intent);
+                SPO2.this.finish();
+
+
             }
         });
         buttonWakeup = (Button)findViewById(R.id.button_wakeup);
@@ -69,7 +74,8 @@ public class SPO2 extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(SPO2.this, WakeupApplication.class);
                 startActivity(intent);
-                finish();
+                SPO2.this.finish();
+
             }
         });
         buttonIntense = (Button)findViewById(R.id.button_intense);
@@ -78,19 +84,21 @@ public class SPO2 extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(SPO2.this, IntenseApplication.class);
                 startActivity(intent);
-                finish();
+                SPO2.this.finish();
+
             }
         });
-        test = (Button)findViewById(R.id.start_test);
+        /*test = (Button)findViewById(R.id.start_test);
         test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MainActivity.SendMorSensorCommands(MainActivity.SEND_MORSENSOR_FILE_DATA_SIZE); //SEND_MORSENSOR_FILE_DATA_SIZE
                 Intent intent = new Intent(SPO2.this, result.class);
                 startActivity(intent);
-                finish();
+                SPO2.this.finish();
+
             }
-        });
+        });*/
 
 
         SharedPreferences settings = getSharedPreferences(Login.LOGIN, 0);
@@ -172,10 +180,9 @@ public class SPO2 extends AppCompatActivity {
                 Log.d("onPostExecute", "haha");
 
                 //loadingDialog.dismiss();
-                Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
                 if(result!=null){
 
-                    Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
                     float totalspo2= 0.0f;
                     float totalbeat= 0.0f;
                     if(mData.size()>0) {
@@ -213,14 +220,24 @@ public class SPO2 extends AppCompatActivity {
 
             Intent intent = new Intent(this, Setting_SPO2.class);
             startActivity(intent);
-            finish();
+            SPO2.this.finish();
+
 
             return true;
         }
         else if(id == R.id.action_spo2_history){
             Intent intent = new Intent(this, History.class);
             startActivity(intent);
-            finish();
+            SPO2.this.finish();
+
+            return true;
+        }
+        else if(id == R.id.action_test){
+            MainActivity.SendMorSensorCommands(MainActivity.SEND_MORSENSOR_FILE_DATA_SIZE); //SEND_MORSENSOR_FILE_DATA_SIZE
+            Intent intent = new Intent(SPO2.this, result.class);
+            startActivity(intent);
+            SPO2.this.finish();
+
             return true;
         }
 
@@ -228,13 +245,33 @@ public class SPO2 extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event)
-    {
-        if ((keyCode == KeyEvent.KEYCODE_BACK))
-        {
-            this.finish();
+    public  boolean  onKeyDown ( int  keyCode ,  KeyEvent event )  {
+        if  ( keyCode  ==  KeyEvent. KEYCODE_BACK )  {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this); //創建訊息方塊
+            builder.setMessage("確定要離開？");
+            builder.setTitle("離開");
+            builder.setPositiveButton("確認", new DialogInterface.OnClickListener()  {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss(); //dismiss為關閉dialog,Activity還會保留dialog的狀態
+                    if(DeviceScanActivity.mDeviceScanActivity!=null)
+                        DeviceScanActivity.mDeviceScanActivity.finish();
+                    MainActivity.mMainActivity.finish();
+                    finish();
+                }
+            });
+
+            builder.setNegativeButton("取消", new DialogInterface.OnClickListener()  {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss(); //dismiss為關閉dialog,Activity還會保留dialog的狀態
+                }
+            });
+            builder.create().show();
+            return  false ;
         }
-        return super.onKeyDown(keyCode, event);
+
+        return  super.onKeyDown ( keyCode ,  event );
     }
 
     @Override

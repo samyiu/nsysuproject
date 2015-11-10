@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="血氧飽和度"
+        android:text="一般狀態血氧飽和度平均"
         android:id="@+id/textView_spo2"
         android:layout_below="@+id/circleView_spo2"
         android:layout_centerHorizontal="true" />

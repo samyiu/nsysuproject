@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/BackgroundColor"
     tools:context="tw.edu.nsysu.morsenser_morfeeling.SPO2">
 
     <android.support.v7.widget.Toolbar
@@ -17,6 +18,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@color/BackgroundColor"
         android:layout_weight="1">
 
         <android.support.v4.view.ViewPager
@@ -32,45 +34,52 @@
             app:ci_animator="@anim/indicator_no_animator"
             app:ci_drawable="@drawable/deepgrey_radius"
             app:ci_drawable_unselected="@drawable/grey_radius"
-            android:layout_height="40dp"
+            android:layout_height="30dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@color/BackgroundColor"
         android:layout_weight="1" >
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
+
             android:text="運動強度目標"
             android:id="@+id/button_goal"
             android:layout_alignParentTop="true"
-            android:layout_alignStart="@+id/button_intense" />
+            android:layout_alignStart="@+id/button_intense"
+            android:textColor="@drawable/selector"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/my_button"/>
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:text="運動強度檢測"
             android:id="@+id/button_intense"
+            android:textColor="@drawable/selector"
+            android:background="@drawable/my_button"
+
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:text="身體疲勞檢測"
             android:id="@+id/button_wakeup"
+            android:textColor="@drawable/selector"
+            android:background="@drawable/my_button"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
             android:layout_alignParentBottom="true"
             android:layout_alignStart="@+id/button_intense" />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="START TEST"
-            android:id="@+id/start_test"
-            android:layout_alignParentBottom="true"
-            android:layout_toEndOf="@+id/button_wakeup" />
+        />
     </RelativeLayout>
 
 </LinearLayout>

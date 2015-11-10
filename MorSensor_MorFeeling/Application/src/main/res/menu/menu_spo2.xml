@@ -9,5 +9,9 @@
         android:title="Settings"
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_settings_black_24dp" />
+    <item android:id="@+id/action_test"
+        android:title="Test"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_add_circle_outline_black_24dp" />
 
 </menu>

@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="心率"
+        android:text="一般狀態平均心率"
         android:id="@+id/textView_heartbeat"
         android:layout_below="@+id/circleView_heartbeat"
         android:layout_centerHorizontal="true" />

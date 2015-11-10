@@ -1,5 +1,6 @@
 package tw.edu.nsysu.morsenser_morfeeling;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -103,7 +104,7 @@ public class History extends AppCompatActivity {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                //loadingDialog = ProgressDialog.show(GetData.this, "Please wait", "Loading...");
+                loadingDialog = ProgressDialog.show(History.this, "Please wait", "Loading...");
             }
 
             @Override
@@ -167,11 +168,11 @@ public class History extends AppCompatActivity {
             protected void onPostExecute(String result){
                 Log.d("onPostExecute", "haha");
 
-                //loadingDialog.dismiss();
-                Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+                loadingDialog.dismiss();
+
                 if(result!=null){
 
-                    Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
                     MyAdapter adapter = new MyAdapter(History.this);
                     listView.setAdapter(adapter);
                 }
@@ -187,14 +188,17 @@ public class History extends AppCompatActivity {
     {
         if ((keyCode == KeyEvent.KEYCODE_BACK))
         {
+            Intent intent = new Intent(History.this, SPO2.class);
+            startActivity(intent);
             this.finish();
         }
         return super.onKeyDown(keyCode, event);
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent returnIntent = new Intent(History.this, SPO2.class);
-        startActivity(returnIntent);
+
+        Intent intent = new Intent(History.this, SPO2.class);
+        startActivity(intent);
         finish();
 
         return super.onOptionsItemSelected(item);

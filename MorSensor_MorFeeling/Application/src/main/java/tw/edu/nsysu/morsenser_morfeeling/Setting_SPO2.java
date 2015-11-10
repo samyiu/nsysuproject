@@ -1,5 +1,6 @@
 package tw.edu.nsysu.morsenser_morfeeling;
 
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.AlarmManager;
 import android.app.NotificationManager;
@@ -10,6 +11,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -28,14 +30,17 @@ import java.util.Calendar;
 public class Setting_SPO2 extends AppCompatActivity implements com.wdullaer.materialdatetimepicker.time.TimePickerDialog.OnTimeSetListener,DatePickerDialog.OnDateSetListener{
     Switch alarm;
     Button logout;
+    Button switch_sensor;
     TextView time;
     static boolean setalarm = false;
     static int hourofday = 7;
     static int minuteofhour = 0 ;
+    static Activity mActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_spo2);
+        mActivity = this;
         TextView usr = (TextView)findViewById(R.id.username);
         SharedPreferences settings = getSharedPreferences(Login.LOGIN, 0);
         String user = settings.getString(Login.USER, "");
@@ -45,6 +50,7 @@ public class Setting_SPO2 extends AppCompatActivity implements com.wdullaer.mate
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         alarm = (Switch)findViewById(R.id.alarm);
         logout = (Button) findViewById(R.id.logout);
+        switch_sensor = (Button) findViewById(R.id.switch_sensor);
         time  = (TextView) findViewById(R.id.alarm_time);
         time.setText(String.format("%02d", hourofday) + " : " + String.format("%02d", minuteofhour));
 
@@ -53,17 +59,37 @@ public class Setting_SPO2 extends AppCompatActivity implements com.wdullaer.mate
             @Override
             public void onClick(View v) {
                 SharedPreferences settings = getSharedPreferences(Login.LOGIN, Context.MODE_PRIVATE);
-                settings.edit().clear().commit();
+                settings.edit().clear().apply();
                 NotificationManager mNotificationManager =
                         (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                 // mId allows you to update the notification later on.
                 mNotificationManager.cancel(1);
                 for (int i = 0; i < 3; i++)
                     MainActivity.SendMorSensorStop();
+                if(DeviceScanActivity.mDeviceScanActivity!=null)
+                    DeviceScanActivity.mDeviceScanActivity.finish();
+
+
                 Intent intent = new Intent();
-                intent.setClass(Setting_SPO2.this, Login.class);
+                intent.setClass(mActivity, Login.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
-                finish();
+                Setting_SPO2.this.finish();
+            }
+        });
+        switch_sensor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for(int i=0;i<3;i++)
+                    MainActivity.SendMorSensorStop();
+                if(DeviceScanActivity.mDeviceScanActivity!=null)
+                    DeviceScanActivity.mDeviceScanActivity.finish();
+                Intent intent = new Intent(Setting_SPO2.this,DeviceScanActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                Setting_SPO2.this.finish();
+
+
             }
         });
         if(setalarm)
@@ -104,14 +130,26 @@ public class Setting_SPO2 extends AppCompatActivity implements com.wdullaer.mate
 
     }
     @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if ((keyCode == KeyEvent.KEYCODE_BACK))
+        {
+            Intent intent = new Intent(Setting_SPO2.this, SPO2.class);
+            startActivity(intent);
+            this.finish();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
 
-        Intent intent = new Intent(this, SPO2.class);
+        Intent intent = new Intent(Setting_SPO2.this, SPO2.class);
         startActivity(intent);
-        finish();
+        Setting_SPO2.this.finish();
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -127,8 +165,7 @@ public class Setting_SPO2 extends AppCompatActivity implements com.wdullaer.mate
 
         Calendar cal = Calendar.getInstance();
 
-        time.setText(String.format("%02d", hourofday)+ " : " + String.format("%02d", minuteofhour));
-        // 設定於 3 分鐘後執行
+        time.setText(String.format("%02d", hourOfDay)+ " : " + String.format("%02d", minute));
         cal.set(Calendar.HOUR_OF_DAY, hourOfDay);
         cal.set(Calendar.MINUTE,minute);
         hourofday = hourOfDay;
@@ -138,6 +175,7 @@ public class Setting_SPO2 extends AppCompatActivity implements com.wdullaer.mate
         PendingIntent pi = PendingIntent.getBroadcast(Setting_SPO2.this, 1, intent, PendingIntent.FLAG_ONE_SHOT);
 
         AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        am.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),60*60*24*1000, pi);
+        am.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pi);
     }
+
 }

@@ -1,9 +1,13 @@
 package tw.edu.nsysu.morsenser_morfeeling;
 
 import android.app.ActivityManager;
+import android.app.AlertDialog;
+import android.app.Service;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,6 +21,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,9 +52,9 @@ public class THU extends AppCompatActivity {
     static LinearLayout content;
     static LinearLayout contentuv;
     static LinearLayout contentsunstroke;
-    static ImageView click;
-    static ImageView clickuv;
-    static ImageView clicksunstroke;
+    static RelativeLayout click;
+    static RelativeLayout clickuv;
+    static RelativeLayout clicksunstroke;
     static float data[] = new float[3];
     static THU mn;
 
@@ -80,9 +85,9 @@ public class THU extends AppCompatActivity {
         // Setting the viewPager for the indicator
         myIndicator.setViewPager(pager);
 
-        click = (ImageView)findViewById(R.id.clickcomfort);
-        clickuv = (ImageView)findViewById(R.id.clickuv);
-        clicksunstroke = (ImageView)findViewById(R.id.clicksunstroke);
+        click = (RelativeLayout)findViewById(R.id.comfort_expand);
+        clickuv = (RelativeLayout)findViewById(R.id.uv_expand);
+        clicksunstroke = (RelativeLayout)findViewById(R.id.heatstroke_expand);
         content = (LinearLayout)findViewById(R.id.content);
         contentuv = (LinearLayout)findViewById(R.id.contentUV);
         contentsunstroke = (LinearLayout)findViewById(R.id.content_sunstroke);
@@ -207,11 +212,11 @@ public class THU extends AppCompatActivity {
         float f = data[1]*9/5 + 32;
         //計算舒適度指數
         double index = f- ( 0.55 - 0.55*data[2]/100 ) *( f - 58 );
-        comfortnumber.setText(new BigDecimal(index).setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue() + "");
+        //comfortnumber.setText(new BigDecimal(index).setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue() + "");
 
 
         if(index >=86) {
-            //status.setText(R.string.l4);
+            comfortnumber.setText(R.string.l4);
 
             ComfortProgressBar.setProgress(100);
             if(show_comfort && !comfort_status.equals(mn.getResources().getString(R.string.l4))) {
@@ -221,6 +226,8 @@ public class THU extends AppCompatActivity {
                         .setMessage(R.string.l4);
                 if (isActive) {
                     alertDialog.show();
+                    Vibrator myVibrator = (Vibrator) mn.getSystemService(Service.VIBRATOR_SERVICE);
+                    myVibrator.vibrate(1000);
 
                 }
                 comfort_status = mn.getResources().getString(R.string.l4);
@@ -228,7 +235,7 @@ public class THU extends AppCompatActivity {
 
         }
         else if(index >=80) {
-            //status.setText(R.string.l3);
+            comfortnumber.setText(R.string.l3);
             ComfortProgressBar.setProgress((int) (100/(88-25)*Math.round(index)));
             if(show_comfort && !comfort_status.equals(mn.getResources().getString(R.string.l3))) {
                 android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(mn);
@@ -237,6 +244,8 @@ public class THU extends AppCompatActivity {
                         .setMessage(R.string.l3);
                 if (isActive) {
                     alertDialog.show();
+                    Vibrator myVibrator = (Vibrator) mn.getSystemService(Service.VIBRATOR_SERVICE);
+                    myVibrator.vibrate(1000);
 
                 }
                 comfort_status = mn.getResources().getString(R.string.l3);
@@ -245,7 +254,7 @@ public class THU extends AppCompatActivity {
         }
         else if(index >= 76) {
             //顯示警告
-            //status.setText(R.string.l2);
+            comfortnumber.setText(R.string.l2);
             ComfortProgressBar.setProgress((int) (100 / (88 - 25) * Math.round(index)));
             if(show_comfort &&  !comfort_status.equals(mn.getResources().getString(R.string.l2))) {
                 android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(mn);
@@ -256,6 +265,8 @@ public class THU extends AppCompatActivity {
                 intent.setClassName("tw.edu.nsysu.morsenser_morfeeling", "THU");
                 if (isActive) {
                     alertDialog.show();
+                    Vibrator myVibrator = (Vibrator) mn.getSystemService(Service.VIBRATOR_SERVICE);
+                    myVibrator.vibrate(1000);
 
                 }
                 comfort_status = mn.getResources().getString(R.string.l2);
@@ -263,19 +274,19 @@ public class THU extends AppCompatActivity {
 
         }
         else if(index >=71) {
-            //status.setText(R.string.l1);
+            comfortnumber.setText(R.string.l1);
             ComfortProgressBar.setProgress((int) (100 / (88 - 25) * Math.round(index)));
         }
         else if(index >=59) {
-            //status.setText(R.string.l0);
+            comfortnumber.setText(R.string.l0);
             ComfortProgressBar.setProgress((int) (100 / (88 - 25) * Math.round(index)));
         }
         else if(index >=51) {
-            //status.setText(R.string.l_1);
+            comfortnumber.setText(R.string.l_1);
             ComfortProgressBar.setProgress((int) (100 / (88 - 25) * Math.round(index)));
         }
         else if(index >=39) {
-            //status.setText(R.string.l_2);
+            comfortnumber.setText(R.string.l_2);
             ComfortProgressBar.setProgress((int) (100 / (88 - 25) * Math.round(index)));
             if(show_comfort &&  !comfort_status.equals(mn.getResources().getString(R.string.l_2))) {
                 android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(mn);
@@ -284,6 +295,8 @@ public class THU extends AppCompatActivity {
                         .setMessage(R.string.l_2);
                 if (isActive) {
                     alertDialog.show();
+                    Vibrator myVibrator = (Vibrator) mn.getSystemService(Service.VIBRATOR_SERVICE);
+                    myVibrator.vibrate(1000);
 
                 }
                 comfort_status = mn.getResources().getString(R.string.l_2);
@@ -291,7 +304,7 @@ public class THU extends AppCompatActivity {
 
         }
         else if(index >=26) {
-            //status.setText(R.string.l_3);
+            comfortnumber.setText(R.string.l_3);
             ComfortProgressBar.setProgress((int) (100 / (88 - 25) * Math.round(index)));
             if(show_comfort &&  !comfort_status.equals(mn.getResources().getString(R.string.l_3))) {
                 android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(mn);
@@ -300,6 +313,8 @@ public class THU extends AppCompatActivity {
                         .setMessage(R.string.l_3);
                 if (isActive) {
                     alertDialog.show();
+                    Vibrator myVibrator = (Vibrator) mn.getSystemService(Service.VIBRATOR_SERVICE);
+                    myVibrator.vibrate(1000);
 
                 }
                 comfort_status = mn.getResources().getString(R.string.l_3);
@@ -307,7 +322,7 @@ public class THU extends AppCompatActivity {
 
         }
         else  {
-            //status.setText(R.string.l_4);
+            comfortnumber.setText(R.string.l_4);
             ComfortProgressBar.setProgress(0);
             if(show_comfort  &&  !comfort_status.equals(mn.getResources().getString(R.string.l_4))) {
                 android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(mn);
@@ -317,6 +332,8 @@ public class THU extends AppCompatActivity {
 
                 if (isActive) {
                     alertDialog.show();
+                    Vibrator myVibrator = (Vibrator) mn.getSystemService(Service.VIBRATOR_SERVICE);
+                    myVibrator.vibrate(1000);
 
                 }
                 comfort_status = mn.getResources().getString(R.string.l_4);
@@ -339,6 +356,8 @@ public class THU extends AppCompatActivity {
                         .setMessage(R.string.superhigh_advice);
                 if (isActive) {
                     alertDialog.show();
+                    Vibrator myVibrator = (Vibrator) mn.getSystemService(Service.VIBRATOR_SERVICE);
+                    myVibrator.vibrate(1000);
 
                 }
                 uv_status = mn.getResources().getString(R.string.superhigh_status);
@@ -355,6 +374,8 @@ public class THU extends AppCompatActivity {
                         .setMessage(R.string.veryhigh_advice);
                 if (isActive) {
                     alertDialog.show();
+                    Vibrator myVibrator = (Vibrator) mn.getSystemService(Service.VIBRATOR_SERVICE);
+                    myVibrator.vibrate(1000);
 
                 }
                 uv_status = mn.getResources().getString(R.string.veryhigh_status);
@@ -371,6 +392,8 @@ public class THU extends AppCompatActivity {
                         .setMessage(R.string.high_advice);
                 if (isActive) {
                     alertDialog.show();
+                    Vibrator myVibrator = (Vibrator) mn.getSystemService(Service.VIBRATOR_SERVICE);
+                    myVibrator.vibrate(1000);
 
                 }
                 uv_status = mn.getResources().getString(R.string.high_status);
@@ -387,6 +410,8 @@ public class THU extends AppCompatActivity {
                         .setMessage(R.string.medium_advice);
                 if (isActive) {
                     alertDialog.show();
+                    Vibrator myVibrator = (Vibrator) mn.getSystemService(Service.VIBRATOR_SERVICE);
+                    myVibrator.vibrate(1000);
 
                 }
                 uv_status = mn.getResources().getString(R.string.medium_status);
@@ -403,7 +428,7 @@ public class THU extends AppCompatActivity {
         data = DataTransform.getData();
         Log.e("THU",String.valueOf(sunstroke_status));
         //危險等級
-        if(data[1]+data[2]*0.1>=40 ) {
+        if(data[1]+data[2]*0.1>=45 ) {
             HeatstrokeStatus.setText(R.string.danger_status);
             HeatstrokeProgressBar.setProgress(100);
             if(show_sunstroke &&  sunstroke_status != 4) {
@@ -415,6 +440,8 @@ public class THU extends AppCompatActivity {
                     //说明系统中不存在这个activity
                 if (isActive) {
                     alertDialog.show();
+                    Vibrator myVibrator = (Vibrator) mn.getSystemService(Service.VIBRATOR_SERVICE);
+                    myVibrator.vibrate(1000);
 
                 }
 
@@ -423,9 +450,9 @@ public class THU extends AppCompatActivity {
 
         }
         //警戒範圍
-        else if(data[1]+data[2]*0.1 >=35 && data[1]+data[2]*0.1 < 40) {
+        else if(data[1]+data[2]*0.1 >=40 && data[1]+data[2]*0.1 < 45) {
             HeatstrokeStatus.setText(R.string.careful_status);
-            HeatstrokeProgressBar.setProgress(((int) Math.round(data[1] + data[2] * 0.1) - 30) * 10);
+            HeatstrokeProgressBar.setProgress(((int) Math.round(data[1] + data[2] * 0.1) - 35) * 10);
             if(show_sunstroke &&  sunstroke_status != 3) {
                 android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(mn);
                 alertDialog.setTitle("小提醒")
@@ -434,6 +461,8 @@ public class THU extends AppCompatActivity {
 
                 if (isActive) {
                     alertDialog.show();
+                    Vibrator myVibrator = (Vibrator) mn.getSystemService(Service.VIBRATOR_SERVICE);
+                    myVibrator.vibrate(1000);
 
                 }
 
@@ -442,9 +471,9 @@ public class THU extends AppCompatActivity {
         }
 
         //需注意
-        else if(data[1]+data[2]*0.1 >=30 && data[1]+data[2]*0.1 < 35) {
+        else if(data[1]+data[2]*0.1 >=35 && data[1]+data[2]*0.1 < 40) {
             HeatstrokeStatus.setText(R.string.warning_status);
-            HeatstrokeProgressBar.setProgress(((int) Math.round(data[1] + data[2] * 0.1) - 30) * 10);
+            HeatstrokeProgressBar.setProgress(((int) Math.round(data[1] + data[2] * 0.1) - 35) * 10);
         }
         //安全範圍
         else {
@@ -456,13 +485,33 @@ public class THU extends AppCompatActivity {
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event)
-    {
-        if ((keyCode == KeyEvent.KEYCODE_BACK))
-        {
-           this.finish();
+    public  boolean  onKeyDown ( int  keyCode ,  KeyEvent event )  {
+        if  ( keyCode  ==  KeyEvent. KEYCODE_BACK )  {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this); //創建訊息方塊
+            builder.setMessage("確定要離開？");
+            builder.setTitle("離開");
+            builder.setPositiveButton("確認", new DialogInterface.OnClickListener()  {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss(); //dismiss為關閉dialog,Activity還會保留dialog的狀態
+                    if(DeviceScanActivity.mDeviceScanActivity!=null)
+                        DeviceScanActivity.mDeviceScanActivity.finish();
+                    MainActivity.mMainActivity.finish();
+                    finish();
+                }
+            });
+
+            builder.setNegativeButton("取消", new DialogInterface.OnClickListener()  {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss(); //dismiss為關閉dialog,Activity還會保留dialog的狀態
+                }
+            });
+            builder.create().show();
+            return  false ;
         }
-        return super.onKeyDown(keyCode, event);
+
+        return  super.onKeyDown ( keyCode ,  event );
     }
 
     @Override

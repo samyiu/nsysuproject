@@ -27,7 +27,7 @@
         <item name="colorControlHighlight">@color/colorControlHighlight</item>
         <item name="colorSwitchThumbNormal">@color/colorSwitchThumbNormal</item>
         <item name="android:textColorPrimary">@color/colorTextPrimary</item>
-        <item name="android:textColor">@drawable/selector</item>
+
     </style>
 
     <style name="myNoActionbar" parent="Theme.AppCompat.Light.NoActionBar">
@@ -39,7 +39,6 @@
         <item name="colorControlHighlight">@color/colorControlHighlight</item>
         <item name="colorSwitchThumbNormal">@color/colorSwitchThumbNormal</item>
         <item name="android:textColorPrimary">@color/colorTextPrimary</item>
-        <item name="android:textColor">@drawable/selector</item>
     </style>
 
 

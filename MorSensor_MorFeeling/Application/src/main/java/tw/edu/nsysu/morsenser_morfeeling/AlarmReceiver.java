@@ -21,7 +21,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Toast.makeText(context,"Time's up!!",Toast.LENGTH_SHORT).show();
-        NotificationCompat.Builder mBuilder =
+        /*NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(context)
                         .setSmallIcon(R.drawable.thu_app_icon)
                         .setContentTitle("小提醒")
@@ -41,7 +41,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         NotificationManager mNotificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 // mId allows you to update the notification later on.
-        mNotificationManager.notify(1, mBuilder.build());
+        mNotificationManager.notify(1, mBuilder.build());*/
         Vibrator myVibrator = (Vibrator) context.getSystemService(Service.VIBRATOR_SERVICE);
         myVibrator.vibrate(1000);
         Dialog.createDialog(1, context);

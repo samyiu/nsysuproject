@@ -109,7 +109,8 @@
                 android:text="運動後"
                 android:textSize="20sp"
                 android:id="@+id/after"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:checked="false" />
         </RadioGroup>
     </LinearLayout>
     <LinearLayout

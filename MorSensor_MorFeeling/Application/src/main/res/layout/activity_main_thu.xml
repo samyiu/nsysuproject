@@ -16,6 +16,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@color/BackgroundColor"
         android:layout_weight="1">
 
         <android.support.v4.view.ViewPager
@@ -38,7 +39,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.1">
+        android:background="@color/BackgroundColor"
+        android:layout_weight="1">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp">
@@ -69,6 +71,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/comfort_expand"
+                android:clickable="true"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
@@ -78,6 +82,7 @@
                     android:layout_marginStart="20dp"
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
+                    android:layout_marginRight="10dp"
                     android:id="@+id/comfortNumber"
                     />
                 <ImageView
@@ -291,6 +296,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/uv_expand"
+                android:clickable="true"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
@@ -427,6 +434,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/heatstroke_expand"
+                android:clickable="true"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
@@ -483,7 +492,7 @@
 
                     <TableRow>
                         <TextView
-                            android:text="＜ 30"
+                            android:text="＜ 35"
                             android:padding="3dip" />
                         <TextView
                             android:text="安全範圍"
@@ -496,7 +505,7 @@
                     </TableRow>
                     <TableRow>
                         <TextView
-                            android:text="30-35"
+                            android:text="35-40"
                             android:padding="3dip" />
                         <TextView
                             android:text="注意"
@@ -509,7 +518,7 @@
                     </TableRow>
                     <TableRow>
                         <TextView
-                            android:text="35-40"
+                            android:text="40-45"
                             android:padding="3dip" />
                         <TextView
                             android:text="警戒"
@@ -523,7 +532,7 @@
                     </TableRow>
                     <TableRow>
                         <TextView
-                            android:text="＞ 40"
+                            android:text="＞ 45"
                             android:padding="3dip" />
                         <TextView
                             android:text="危險"

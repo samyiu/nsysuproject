@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +33,7 @@ public class GoalApplication extends AppCompatActivity {
     private RadioButton cardio;
     private RadioButton intense;
     private RadioGroup rgroup;
-    static ImageView click;
+    static RelativeLayout click;
     static LinearLayout content;
     private TextView goal;
      static private TextView heartrate;
@@ -65,7 +67,7 @@ public class GoalApplication extends AppCompatActivity {
         //heartrate = (TextView) v.findViewById(R.id.heartrate);
         test = (Button)findViewById(R.id.test);
         editage = (EditText)findViewById(R.id.edittext);
-        click = (ImageView)findViewById(R.id.click);
+        click = (RelativeLayout)findViewById(R.id.goal_expand);
         content = (LinearLayout)findViewById(R.id.content);
         content.setVisibility(View.GONE);
 
@@ -201,11 +203,22 @@ public class GoalApplication extends AppCompatActivity {
     }*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent returnIntent = new Intent(GoalApplication.this, SPO2.class);
-        startActivity(returnIntent);
+        Intent intent = new Intent(GoalApplication.this, SPO2.class);
+        startActivity(intent);
         finish();
 
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if ((keyCode == KeyEvent.KEYCODE_BACK))
+        {
+            Intent intent = new Intent(GoalApplication.this, SPO2.class);
+            startActivity(intent);
+            this.finish();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 

@@ -43,16 +43,17 @@
             android:layout_width="60dp"
             android:layout_height="40dp"
             android:layout_marginLeft="32dp"
-            android:textColor="#009688"
+            android:textColor="@drawable/selector"
             android:text="登出"
             android:background="@drawable/my_button"
             />
         <Button
-            android:layout_width="70dp"
+            android:layout_width="100dp"
             android:layout_height="40dp"
             android:layout_marginLeft="32dp"
-            android:textColor="#009688"
-            android:text="重設密碼"
+            android:textColor="@drawable/selector"
+            android:text="切換感測器"
+            android:id="@+id/switch_sensor2"
             android:background="@drawable/my_button"
             />
 

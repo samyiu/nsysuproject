@@ -43,7 +43,7 @@
             android:layout_width="60dp"
             android:layout_height="40dp"
             android:layout_marginLeft="32dp"
-            android:textColor="#009688"
+            android:textColor="@drawable/selector"
             android:text="登出"
             android:background="@drawable/my_button"
             />
@@ -51,9 +51,10 @@
             android:layout_width="90dp"
             android:layout_height="40dp"
             android:layout_marginLeft="32dp"
-            android:textColor="#009688"
+            android:textColor="@drawable/selector"
             android:text="切換感測器"
             android:background="@drawable/my_button"
+            android:id="@+id/switch_sensor"
             />
 
     </LinearLayout>

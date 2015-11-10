@@ -42,6 +42,7 @@ public class Login extends AppCompatActivity {
     TextView signup;
     private EditText editTextUserName;
     private EditText editTextPassword;
+    Login mactivity;
     Button login;
     boolean islogin = false;
 
@@ -61,6 +62,7 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+        mactivity = this;
         title = (TextView) findViewById(R.id.textView2);
         title.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/HaloHandletter.otf"));
         signup = (TextView)findViewById(R.id.signUpTextView);
@@ -184,9 +186,11 @@ public class Login extends AppCompatActivity {
                             .putString(PASS, password)
                             .commit();
                     Intent intent = new Intent();
+                    islogin = false;
                     intent.setClass(Login.this,DeviceScanActivity.class);
-                    intent.putExtra("username",username);
+                    intent.putExtra("username", username);
                     startActivity(intent);
+                    mactivity.finish();
                 }
             }
         }

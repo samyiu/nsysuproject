@@ -22,6 +22,7 @@ import com.rey.material.widget.Switch;
 public class Setting extends AppCompatActivity {
     Switch comfort,sunstroke,uv;
     Button logout;
+    Button switch_sensor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +38,7 @@ public class Setting extends AppCompatActivity {
         sunstroke = (Switch)findViewById(R.id.sw_sunstroke);
         uv = (Switch)findViewById(R.id.sw_uv);
         logout = (Button)findViewById(R.id.logout);
+        switch_sensor = (Button)findViewById(R.id.switch_sensor2);
         if(THU.show_comfort)
             comfort.setChecked(true);
         if(THU.show_uv)
@@ -79,12 +81,30 @@ public class Setting extends AppCompatActivity {
                         (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                 // mId allows you to update the notification later on.
                 mNotificationManager.cancel(1);
-                for(int i=0;i<3;i++)
+                for (int i = 0; i < 3; i++)
                     MainActivity.SendMorSensorStop();
+                if(DeviceScanActivity.mDeviceScanActivity!=null)
+                    DeviceScanActivity.mDeviceScanActivity.finish();
                 Intent intent = new Intent();
-                intent.setClass(Setting.this,Login.class);
+                intent.setClass(Setting.this, Login.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish();
+            }
+        });
+        switch_sensor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for(int i=0;i<3;i++)
+                    MainActivity.SendMorSensorStop();
+                if(DeviceScanActivity.mDeviceScanActivity!=null)
+                    DeviceScanActivity.mDeviceScanActivity.finish();
+                Intent intent = new Intent(Setting.this,DeviceScanActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                Setting.this.finish();
+
+
             }
         });
         ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);

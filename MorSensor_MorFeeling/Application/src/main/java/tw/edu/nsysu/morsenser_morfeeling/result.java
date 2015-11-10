@@ -43,6 +43,7 @@ public class result extends AppCompatActivity {
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
     private static final String TAG_POST = "posts";
+    private static android.app.Dialog loadingDialog;
     static ProgressBar myProgressBar;
     static CircleProgressView mCircleView;
     static float spo2 = 0, heart = 0;
@@ -89,6 +90,7 @@ public class result extends AppCompatActivity {
         data = DataTransform.getData();
         mCircleView.setValueAnimated(data[4]);
         if (data[6] == 1024) {
+            loadingDialog.dismiss();
             Toast.makeText(mcontext, "測量完畢!", Toast.LENGTH_LONG).show();
             txt_heart.setText("心率(HR) : " + String.valueOf(Math.round(data[5])) + "bpm");
             mCircleView.setValue(0);
@@ -104,6 +106,7 @@ public class result extends AppCompatActivity {
             retest.setEnabled(true);
             save.setEnabled(true);
             if (from != null && from.equals("goal")) {
+                from = null;
                 if (heart < goal) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(mcontext);
                     builder.setMessage("您尚未達到目標心率，表示目前的運動強度需要再提升，請繼續加油！");
@@ -136,7 +139,7 @@ public class result extends AppCompatActivity {
                     builder.create().show();
                 }
             } else if (from != null && from.equals("intense")) {
-
+                from = null;
                 if (spo2 < average) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(mcontext);
                     builder.setMessage("您的血氧濃度降低，表示這次運動過於激烈，建議您做適當休息並在下一次運動時降低強度。");
@@ -169,7 +172,7 @@ public class result extends AppCompatActivity {
                     builder.create().show();
                 }
             } else if (from != null && from.equals("wakeup")) {
-
+                from = null;
                 if ((heart - average_beat) > average_beat * 0.05) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(mcontext);
                     builder.setMessage("您的身體處於疲勞狀態，建議您不要過度勞累，並做適當的休息。");
@@ -212,7 +215,7 @@ public class result extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.result);
 
-
+        loadingDialog = ProgressDialog.show(result.this, "請稍候", "測量時請將手指放置於感測器上。\n量測完後記得選取目前身體狀態，再儲存呦!");
         mcontext = result.this;
         myProgressBar = (ProgressBar) findViewById(R.id.progressBar1);
         mCircleView = (CircleProgressView) findViewById(R.id.circleView);
@@ -271,6 +274,7 @@ public class result extends AppCompatActivity {
                 }
                 Intent intent = new Intent(result.this, result.class);
                 startActivity(intent);
+                finish();
 
 
             }
@@ -327,7 +331,7 @@ public class result extends AppCompatActivity {
                         Log.d("INSERT Successful!",json2.getString(TAG_MESSAGE) );
 
 
-                        return json2.getString(TAG_MESSAGE);
+                        return "新增成功";
                     }else{
                         Log.d("INSERT Failure!", json2.getString(TAG_MESSAGE));
                         return json2.getString(TAG_MESSAGE);

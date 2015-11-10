@@ -34,40 +34,52 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_gravity="center_horizontal"
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="年齡 : "
+            android:text="請輸入您的年齡"
             android:id="@+id/age"
             android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="#424242"
             android:layout_gravity="center_horizontal"
-            android:paddingTop="5dp"
+            android:layout_marginTop="10dp"
             />
         <EditText
-            android:layout_width="80dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
             android:id="@+id/edittext"
+            android:textSize="20sp  "
+            android:layout_gravity="center_horizontal"
             android:inputType="number"
-            />
+            android:password="false"
+            android:phoneNumber="false"
+            android:textAlignment="center" />
 
 
     </LinearLayout>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal" android:layout_width="wrap_content"
+        android:orientation="vertical" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="16dp"
-        android:paddingTop="10dp">
-    <TextView
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp">
+
+
+
+        <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text="運動目標:"
-        android:textSize="20sp"
+            android:text="要進行的運動"
+            android:textColor="#424242"
+        android:textSize="25sp"
         android:id="@+id/textView"
-        android:layout_gravity="center_vertical" />
+        android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="16dp"
+            android:textStyle="bold" />
         <RadioGroup
             android:id="@+id/rgroup"
             android:layout_width="wrap_content"
@@ -79,18 +91,21 @@
                 android:text="暖身"
                 android:textSize="20sp"
                 android:id="@+id/warmup"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:textColor="#616161" />
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="有氧"
                 android:textSize="20sp"
+                android:textColor="#616161"
                 android:id="@+id/cardio"
                 android:layout_gravity="center_horizontal" />
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="減酯"
+                android:text="減脂"
+                android:textColor="#616161"
                 android:textSize="20sp"
                 android:id="@+id/intense"
                 android:layout_gravity="center_horizontal" />
@@ -102,19 +117,22 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="目標心率:"
+        android:text="您的目標心率"
+        android:textColor="#424242"
         android:id="@+id/textView10"
-        android:textSize="40sp"
+        android:textSize="25sp"
+        android:textStyle="bold"
         android:layout_gravity="center_horizontal"
-        android:paddingTop="16dp"/>
+        android:layout_marginTop="16dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="bpm"
+
         android:id="@+id/goal"
-        android:textSize="40sp"
+        android:textSize="32sp"
         android:layout_gravity="center_horizontal"
-        android:paddingTop="16dp"/>
+        android:paddingTop="5dp"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -154,6 +172,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/goal_expand"
+                    android:clickable="true"
                     android:orientation="horizontal">
                     <TextView
                         android:layout_width="wrap_content"

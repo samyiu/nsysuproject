@@ -292,7 +292,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
     public void BtDisConnect(){
         if(mConnected)
         {
@@ -365,13 +364,13 @@ public class MainActivity extends AppCompatActivity {
                     SensorName += "SpO2Sensor ";
                     //btSpO2.setEnabled(mEnabled);
 
-                    //if(mEnabled && !CommandSended) {
-                    //    CommandSended = true;
-                    if(mEnabled) {
-                        Log.i(TAG, "oohohohohoh");
-                        connectSPO2();
+                    if(mEnabled && !CommandSended) {
+                        CommandSended = true;
+                        if(mEnabled) {
+                            Log.i(TAG, "oohohohohoh");
+                            connectSPO2();
+                        }
                     }
-                    //}
                     break;
                 case AlcoholID:
                     SensorName += "AlcoholSensor ";
@@ -667,7 +666,6 @@ public class MainActivity extends AppCompatActivity {
                     dialog.dismiss(); //dismiss為關閉dialog,Activity還會保留dialog的狀態
                     if(DeviceScanActivity.mDeviceScanActivity!=null)
                         DeviceScanActivity.mDeviceScanActivity.finish();
-
                     BtDisConnect();
                 }
             });

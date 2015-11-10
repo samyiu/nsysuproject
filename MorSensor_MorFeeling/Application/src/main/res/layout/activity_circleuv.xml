@@ -4,8 +4,7 @@
     xmlns:CircleProgressView="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/BackgroundColor">
+    android:layout_height="match_parent">
 
     <tw.edu.nsysu.morsenser_morfeeling.CircleProgressView
         android:id="@+id/circleView"

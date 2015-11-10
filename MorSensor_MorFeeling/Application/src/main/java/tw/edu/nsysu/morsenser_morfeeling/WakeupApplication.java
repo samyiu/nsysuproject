@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,7 +44,7 @@ public class WakeupApplication extends AppCompatActivity {
     private static final String TAG_POST = "posts";
     private List<HashMap<String, Object>> mData;
     TextView txt_avg;
-    static ImageView click;
+    static RelativeLayout click;
     static LinearLayout content;
 
     static FragmentActivity mn;
@@ -87,7 +89,7 @@ public class WakeupApplication extends AppCompatActivity {
         String pwd = settings.getString(Login.PASS, "");
         get(user);
 
-        click = (ImageView)findViewById(R.id.click);
+        click = (RelativeLayout)findViewById(R.id.wake_expand);
         content = (LinearLayout)findViewById(R.id.content);
         content.setVisibility(View.GONE);
         click.setOnClickListener(new View.OnClickListener() {
@@ -208,17 +210,17 @@ public class WakeupApplication extends AppCompatActivity {
                 Log.d("onPostExecute", "haha");
 
                 //loadingDialog.dismiss();
-                Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
                 if(result!=null){
 
-                    Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
 
                     if(mData.size()>0) {
                         for (int i = 0; i < mData.size(); i++) {
                             average+= Float.parseFloat(mData.get(i).get("heartrate").toString());
                         }
                         average = Math.round(average / mData.size());
-                        Toast.makeText(WakeupApplication.this, String.valueOf(average), Toast.LENGTH_LONG).show();
+                        //Toast.makeText(WakeupApplication.this, String.valueOf(average), Toast.LENGTH_LONG).show();
                         txt_avg.setText(String.valueOf(average) + " bpm");
                     }
                 }
@@ -231,9 +233,20 @@ public class WakeupApplication extends AppCompatActivity {
     }
 
     @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if ((keyCode == KeyEvent.KEYCODE_BACK))
+        {
+            Intent intent = new Intent(WakeupApplication.this, SPO2.class);
+            startActivity(intent);
+            this.finish();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent returnIntent = new Intent(WakeupApplication.this, SPO2.class);
-        startActivity(returnIntent);
+        Intent intent = new Intent(WakeupApplication.this, SPO2.class);
+        startActivity(intent);
         finish();
 
         return super.onOptionsItemSelected(item);

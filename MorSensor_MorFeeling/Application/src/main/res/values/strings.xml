@@ -95,7 +95,7 @@
     <string name="work">過度運動警告</string>
     <string name= "tired">身體疲勞檢測</string>
     <string name= "notice">資料庫中無資料，請先測量一筆作為基準值!!</string>
-    <string name= "eq">中暑危險係數測定法公式：\n危險係數 = 室外溫度（℃）＋ 相對濕度 × 0.1</string>
+    <string name= "eq">中暑危險係數測定法公式：\n危險係數 = 室外溫度（℃）+ 相對濕度 × 0.1</string>
     <string name= "comfort_eq">舒適度指數計算公式 : \nDI = T - ( 0.55 - 0.55f ) ( T - 58 ) ，T為華氏溫度，f為相對溼度(介於0-1)</string>
     <string name= "goal_info">目標心率的計算是根據Karvonen Method的公式得來的，可以作為是否已達到欲達成之運動強度的依據，公式如下 : </string>
     <string name= "goal_eq">目標心率值 = ((最大心率值 − 基礎心率值) × % 強度) + 基礎心率值</string>
